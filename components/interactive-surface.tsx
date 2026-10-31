@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, type ReactNode } from 'react';
+import { MotionConfig } from 'motion/react';
 import { setupSiteMotion } from '@/lib/site-motion';
 
 export function InteractiveSurface({children}:{children:ReactNode}) {
@@ -15,5 +16,5 @@ export function InteractiveSurface({children}:{children:ReactNode}) {
     desktop.addEventListener('change', update);
     return () => { preference.removeEventListener('change', update); desktop.removeEventListener('change', update); cleanup(); };
   }, []);
-  return <div className="interactive-surface" ref={root}>{children}</div>;
+  return <MotionConfig reducedMotion="user"><div className="interactive-surface" ref={root}>{children}</div></MotionConfig>;
 }

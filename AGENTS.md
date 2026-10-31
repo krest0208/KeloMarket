@@ -16,7 +16,8 @@ Never upload credentials, environment values, local database contents, customer 
 ## Product preferences
 
 - Black background and pale wood-yellow actions with dark button text.
-- Text-only navigation and purchase buttons; no arrow icons.
+- Navigation and purchase buttons have text and no arrow icons. The header cart is a prominent pale wood-yellow ShoppingBag icon with an accessible label and quantity badge.
+- No underlines on buttons or links, including hover/focus states. Use Motion for animations; respect reduced motion. Galleries support horizontal swipes, and product detail/lightbox photos also use the mouse wheel without trapping the page at the ends.
 - 3D previews and GLB download buttons are currently disabled at the user's request.
 - Board orders use the explicitly confirmed maximum length of 150 cm and maximum finished width of 400 mm, with 30/40 mm thickness and the length slider directly below the image and a quantity control.
 - Separate “Заказать доску” and “Заказать товар” modes.
