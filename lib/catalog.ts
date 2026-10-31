@@ -1,0 +1,34 @@
+export const categories = [
+  {id:'slabs',name:'Слэбы Кело',sub:'Природная форма. Ваш замысел.',image:'hero',detail:'Натуральные доски с живым краем'},
+  {id:'shelves',name:'Навесные полки',sub:'Место для любимого',image:'shelf',detail:'Готовые полки из массива'},
+  {id:'tops',name:'Для столешниц',sub:'Основа вашего интерьера',image:'interior',detail:'Заготовки для столешниц'},
+  {id:'sills',name:'Для подоконников',sub:'Ближе к свету и природе',image:'board',detail:'Заготовки для подоконников'},
+  {id:'mantels',name:'Каминные полки',sub:'Тепло в каждой детали',image:'shelf',detail:'Естественное дополнение к очагу'},
+  {id:'decor',name:'Декор из дерева',sub:'Небольшие вещи. Большой характер.',image:'interior',detail:'Декоративные изделия из массива'},
+];
+export interface Product {id:string;name:string;category:string;description:string;image:string;maxLength:number;width:number;thickness:number;rate:number;remainingCm:number;active:number}
+export interface Processing {sanding:number;cut:number;hole:number;shelf:number}
+export interface Configuration {productId:string;type:'slab'|'shelf'|'blank';length:number;thickness:number;sanding:boolean;cut:boolean;side:'left'|'right';holes:0|2|3;mode?:'board'|'product';supports?:boolean;giftWrap?:boolean}
+export interface CartItem {key:string;product:Product;config:Configuration;quantity:number;price:number}
+export const defaultProcessing:Processing={sanding:550,cut:350,hole:200,shelf:350};
+export const demoProducts:Product[]=[
+  {id:'KL-001',name:'Слэб «Северный»',category:'slabs',description:'Выразительные сучки, мягкий медовый оттенок и свободная линия живого края. Для столешницы, широкой полки или вашего собственного проекта.',image:'/images/board.webp',maxLength:600,width:34,thickness:40,rate:4800,remainingCm:600,active:1},
+  {id:'KL-002',name:'Слэб «Тихий берег»',category:'slabs',description:'Серебристая сосна с глубоким рисунком волокон. Природные трещины и сучки остаются частью характера этой доски.',image:'/images/hero.webp',maxLength:480,width:46,thickness:40,rate:6500,remainingCm:480,active:1},
+  {id:'PL-001',name:'Полка «Лесная»',category:'shelves',description:'Лаконичная полка из массива Кело с живым краем. Крепления подбираются отдельно под материал стены.',image:'/images/shelf.webp',maxLength:120,width:24,thickness:30,rate:2900,remainingCm:120,active:1},
+  {id:'KL-003',name:'Слэб «Ладога»',category:'slabs',description:'Широкая фактурная доска тёплого оттенка. Каждая линия создана природой и останется единственной.',image:'/images/board.webp',maxLength:600,width:52,thickness:30,rate:7200,remainingCm:600,active:1},
+  {id:'PD-001',name:'Заготовка «Рассвет»',category:'sills',description:'Заготовка для подоконника из натуральной карельской сосны. Можно задать длину и подготовить ровную сторону для примыкания к стене.',image:'/images/board.webp',maxLength:300,width:32,thickness:40,rate:4200,remainingCm:300,active:1},
+  {id:'KM-001',name:'Каминная полка «Тепло»',category:'mantels',description:'Выразительная полка из массива. Расположение рядом с камином необходимо согласовать с требованиями производителя камина.',image:'/images/shelf.webp',maxLength:180,width:28,thickness:40,rate:5100,remainingCm:180,active:1},
+  {id:'ST-001',name:'Заготовка «Карелия»',category:'tops',description:'Широкий слэб для будущей столешницы. Натуральная фактура станет главным акцентом пространства.',image:'/images/interior.webp',maxLength:400,width:58,thickness:40,rate:8600,remainingCm:400,active:1},
+  {id:'DK-001',name:'Декоративный слэб «Тропа»',category:'decor',description:'Небольшая фактурная заготовка для интерьерного декора. Рисунок натурального массива сам становится композицией.',image:'/images/board.webp',maxLength:90,width:30,thickness:30,rate:2400,remainingCm:90,active:1},
+];
+export const typeNames={slab:'Слэб',shelf:'Полка',blank:'Заготовка'};
+export const boardLengthLimits={minCm:3,maxCm:15,stepMm:10};
+export const extrasPrice={supports:300,giftWrap:300};
+export const isShelf=(p:Product)=>p.category==='shelves'||p.category==='mantels';
+export function initialConfig(p:Product):Configuration{return {productId:p.id,type:isShelf(p)?'shelf':p.category==='slabs'?'slab':'blank',mode:p.category==='slabs'?'board':'product',length:p.category==='slabs'?Math.min(12,p.maxLength,p.remainingCm):p.maxLength,thickness:p.thickness,sanding:false,cut:false,side:'left',holes:0,supports:false,giftWrap:false};}
+export function configurationError(p:Product,c:Configuration){if(p.thickness!==c.thickness||!Number.isInteger(c.length)||c.length>p.maxLength)return 'Параметры материала изменились. Обновите каталог.';const product=(c.mode|| (p.category==='slabs'?'board':'product'))==='product';if(product){if(p.category==='slabs'||c.length!==p.maxLength)return 'Выберите готовое изделие во вкладке «Заказать товар».';}else if(p.category!=='slabs'||c.type!=='slab'||c.length<boardLengthLimits.minCm||c.length>boardLengthLimits.maxCm)return 'Длина доски должна быть от 30 до 150 мм.';if(c.supports&&!isShelf(p))return 'Менсолодержатели доступны только для полок.';if(c.type!==(isShelf(p)?'shelf':p.category==='slabs'?'slab':'blank'))return 'Выберите соответствующий тип товара.';return '';}
+export function priceDetails(p:Product,c:Configuration,s:Processing=defaultProcessing){const material=Math.round(p.rate*c.length/100);const sanding=c.sanding?Math.round(s.sanding*c.length/100):0;const cut=c.cut?Math.round(s.cut*c.length/100):0;const holes=c.holes*s.hole;const making=c.type==='shelf'?s.shelf:0;const supports=c.supports?extrasPrice.supports:0;const giftWrap=c.giftWrap?extrasPrice.giftWrap:0;return {material,sanding,cut,holes,making,supports,giftWrap,total:material+sanding+cut+holes+making+supports+giftWrap};}
+export function money(value:number){return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(value)+' ₽';}
+export function details(c:Configuration,p:Product){return [`${c.length*10} × ${p.width*10} мм · толщина ${c.thickness} мм`,c.sanding?'Со шлифовкой':'Без шлифовки',c.cut?`Прямой спил: ${c.side==='left'?'левая':'правая'} сторона`:'Два живых края',c.holes?`${c.holes} отверстия`:'Без отверстий',...(c.supports?['Комплект менсолодержателей · 300 ₽']:[]),...(c.giftWrap?['Подарочная упаковка · 300 ₽']:[])];}
+export function shipping(items:CartItem[],type:string){if(type==='pickup')return 0;if(items.some(i=>i.config.length>250))return null;return 990+Math.round(items.reduce((s,i)=>s+i.config.length*i.product.width*i.config.thickness*i.quantity/1000000,0)*90);}
+export const statuses:Record<string,string>={new:'Новый',production:'В производстве',ready:'Готов к отправке',shipping:'В пути',completed:'Завершён',cancelled:'Отменён'};

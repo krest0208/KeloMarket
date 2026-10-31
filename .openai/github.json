@@ -1,0 +1,6 @@
+{
+  "repository": "krest0208/KeloMarket",
+  "branch": "main",
+  "sync_after_each_change": true,
+  "transport": "connected-github-plugin"
+}

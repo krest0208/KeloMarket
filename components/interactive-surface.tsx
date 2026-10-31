@@ -1,0 +1,19 @@
+'use client';
+import { useEffect, useRef, type ReactNode } from 'react';
+import { setupSiteMotion } from '@/lib/site-motion';
+
+export function InteractiveSurface({children}:{children:ReactNode}) {
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const element = root.current;
+    if (!element) return;
+    let cleanup = setupSiteMotion(element);
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const desktop = window.matchMedia('(min-width: 801px)');
+    const update = () => { cleanup(); cleanup = setupSiteMotion(element); };
+    preference.addEventListener('change', update);
+    desktop.addEventListener('change', update);
+    return () => { preference.removeEventListener('change', update); desktop.removeEventListener('change', update); cleanup(); };
+  }, []);
+  return <div className="interactive-surface" ref={root}>{children}</div>;
+}

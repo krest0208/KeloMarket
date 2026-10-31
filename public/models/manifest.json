@@ -1,0 +1,78 @@
+{
+  "description": "Демонстрационные параметрические модели. Не сканы реальных досок.",
+  "units": "millimeters",
+  "models": [
+    {
+      "id": "KL-001",
+      "name": "Слэб «Северный»",
+      "path": "/models/KL-001.glb",
+      "lengthMm": 6000,
+      "widthMm": 340,
+      "thicknessMm": 40,
+      "demo": true
+    },
+    {
+      "id": "KL-002",
+      "name": "Слэб «Тихий берег»",
+      "path": "/models/KL-002.glb",
+      "lengthMm": 4800,
+      "widthMm": 460,
+      "thicknessMm": 40,
+      "demo": true
+    },
+    {
+      "id": "PL-001",
+      "name": "Полка «Лесная»",
+      "path": "/models/PL-001.glb",
+      "lengthMm": 1200,
+      "widthMm": 240,
+      "thicknessMm": 30,
+      "demo": true
+    },
+    {
+      "id": "KL-003",
+      "name": "Слэб «Ладога»",
+      "path": "/models/KL-003.glb",
+      "lengthMm": 6000,
+      "widthMm": 520,
+      "thicknessMm": 30,
+      "demo": true
+    },
+    {
+      "id": "PD-001",
+      "name": "Заготовка «Рассвет»",
+      "path": "/models/PD-001.glb",
+      "lengthMm": 3000,
+      "widthMm": 320,
+      "thicknessMm": 40,
+      "demo": true
+    },
+    {
+      "id": "KM-001",
+      "name": "Каминная полка «Тепло»",
+      "path": "/models/KM-001.glb",
+      "lengthMm": 1800,
+      "widthMm": 280,
+      "thicknessMm": 40,
+      "demo": true
+    },
+    {
+      "id": "ST-001",
+      "name": "Заготовка «Карелия»",
+      "path": "/models/ST-001.glb",
+      "lengthMm": 4000,
+      "widthMm": 580,
+      "thicknessMm": 40,
+      "demo": true
+    },
+    {
+      "id": "DK-001",
+      "name": "Декоративный слэб «Тропа»",
+      "path": "/models/DK-001.glb",
+      "lengthMm": 900,
+      "widthMm": 300,
+      "thicknessMm": 30,
+      "demo": true
+    }
+  ]
+}
