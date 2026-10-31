@@ -19,7 +19,7 @@ Never upload credentials, environment values, local database contents, customer 
 - Navigation and purchase buttons have text and no arrow icons. The header cart is a prominent pale wood-yellow ShoppingBag icon with an accessible label and quantity badge.
 - No underlines on buttons or links, including hover/focus states. Use Motion for animations; respect reduced motion. Galleries support horizontal swipes, and product detail/lightbox photos also use the mouse wheel without trapping the page at the ends.
 - 3D previews and GLB download buttons are currently disabled at the user's request.
-- Board orders use the explicitly confirmed maximum length of 150 cm and maximum finished width of 400 mm, with 30/40 mm thickness and the length slider directly below the image and a quantity control.
+- Board orders use the explicitly confirmed maximum length of 150 cm and maximum finished width of 400 mm, with 30/40 mm thickness and the length slider directly below the image in 1 cm increments with a brief 120 ms detent at each multiple of 10 while dragging; clicks, keyboard input and manual values retain exact centimeter control and a quantity control.
 - Separate “Заказать доску” and “Заказать товар” modes.
 - Gift wrapping and a shelf-support set cost 300 RUB each per item.
 - Keep demo prices/images clearly labelled; YooKassa and Yandex Delivery are not connected.
