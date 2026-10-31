@@ -7,7 +7,7 @@ export interface BoardMesh {parts:ModelPart[];length:number;width:number;thickne
 export function boardSeed(id:string){let n=2166136261;for(let i=0;i<id.length;i++)n=Math.imul(n^id.charCodeAt(i),16777619);return n>>>0;}
 export function fullBoardConfiguration(p:Product):Configuration{return {productId:p.id,type:p.category==='shelves'||p.category==='mantels'?'shelf':p.category==='slabs'?'slab':'blank',length:p.maxLength,thickness:p.thickness,sanding:false,cut:false,side:'left',holes:0};}
 export function createBoardMesh(p:Product,c:Configuration=fullBoardConfiguration(p)):BoardMesh{
- const length=Math.max(.03,Math.min(6,c.length/100)),width=Math.max(.05,p.width/100),thickness=c.thickness/1000,seed=boardSeed(p.id),phase=(seed%1000)/1000*Math.PI*2;
+ const length=Math.max(.03,Math.min(6,c.length/100)),width=Math.max(.05,(c.width??p.width)/100),thickness=c.thickness/1000,seed=boardSeed(p.id),phase=(seed%1000)/1000*Math.PI*2;
  const outline:Point[]=[],segments=Math.max(18,Math.min(100,Math.ceil(c.length/5)));
  const edge=(t:number,side:number)=>{const u=t*c.length/Math.max(1,p.maxLength);const wave=(Math.sin(u*22+phase+side)*.45+Math.sin(u*61+phase*1.7+side*3)*.22+Math.sin(u*137+phase*.8)*.09);return width*(.045+.035*wave);};
  for(let i=0;i<=segments;i++){const t=i/segments;outline.push([-length/2+t*length,-width/2+(c.cut&&c.side==='left'?0:edge(t,0))]);}

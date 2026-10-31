@@ -18,7 +18,12 @@ Never upload credentials, environment values, local database contents, customer 
 - Black background and pale wood-yellow actions with dark button text.
 - Text-only navigation and purchase buttons; no arrow icons.
 - 3D previews and GLB download buttons are currently disabled at the user's request.
-- Board orders use the explicitly confirmed maximum of 150 mm, with the length slider directly below the image and a quantity control.
+- Board orders use the explicitly confirmed maximum length of 150 cm and maximum finished width of 400 mm, with 30/40 mm thickness and the length slider directly below the image and a quantity control.
 - Separate “Заказать доску” and “Заказать товар” modes.
 - Gift wrapping and a shelf-support set cost 300 RUB each per item.
 - Keep demo prices/images clearly labelled; YooKassa and Yandex Delivery are not connected.
+
+- Category cards are gray, with six photos per gallery. Editorial sections use separate photos, never repeated category covers.
+- Header navigation uses dark buttons with a small 8–10 px radius. The announcement strip is removed.
+- Thickness selection belongs below the board image with length and quantity.
+- Include a section with examples of furniture and interior uses for Kelo boards.

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./kelo-gallery.css";
 import "./board-model.css";
+import "./photo-gallery.css";
 import { StoreProvider, Header, Footer } from "@/components/storefront";
 
 export const metadata: Metadata = {
