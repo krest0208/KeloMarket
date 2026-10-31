@@ -48,18 +48,6 @@
     "prompt": "Use case: product-mockup. Premium KELO WOOD MARKET ecommerce photograph, landscape 1536x1024. Photorealistic Karelian dead-standing pine Kelo: authentic silver-grey weathering, soft pale honey heartwood, real pine grain, irregular knots and fine natural cracks. Museum-like restrained Scandinavian studio aesthetic, charcoal and near-black environment, soft precise side light. Matte natural wood, no varnish gloss, no epoxy, no orange stain, no text, no logos, no watermarks, no people, no collage. Crisp material detail and plausible joinery. Macro photograph of a small dark knot and fine hairline crack on silver-grey and muted honey pine. Board surface fills the frame, fine grain and shallow relief in soft grazing light, very natural proportions, no deep black giant holes."
   },
   {
-    "id": "slabs-room",
-    "scope": "cards",
-    "group": "slabs",
-    "caption": "Идея в интерьере",
-    "src": "/images/gallery/slabs-room.webp",
-    "width": 1536,
-    "height": 1024,
-    "demo": true,
-    "generator": "built-in image_gen",
-    "prompt": "Use case: product-mockup. Premium KELO WOOD MARKET ecommerce photograph, landscape 1536x1024. Photorealistic Karelian dead-standing pine Kelo: authentic silver-grey weathering, soft pale honey heartwood, real pine grain, irregular knots and fine natural cracks. Museum-like restrained Scandinavian studio aesthetic, charcoal and near-black environment, soft precise side light. Matte natural wood, no varnish gloss, no epoxy, no orange stain, no text, no logos, no watermarks, no people, no collage. Crisp material detail and plausible joinery. A thin 40 mm live-edge pine slab as a modest side table with quiet black metal legs in a dark Scandinavian living room. One black linen chair, soft window light, warm grey plaster. Wood is the primary subject, clean understated premium furniture photography."
-  },
-  {
     "id": "shelves-front",
     "scope": "cards",
     "group": "shelves",
