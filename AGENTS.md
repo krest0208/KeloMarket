@@ -24,7 +24,7 @@ Never upload credentials, environment values, local database contents, customer 
 - Gift wrapping and a shelf-support set cost 300 RUB each per item.
 - Keep demo prices/images clearly labelled; YooKassa and Yandex Delivery are not connected.
 
-- Category cards are gray, with five or six photos per gallery. The round coffee-table photo formerly named slabs-room was removed at the user's request. Editorial sections use separate photos, never repeated category covers.
+- The homepage has one generic board description card with a Заказать link to /constructor. Do not restore category cards, the featured product grid, or the embedded homepage configurator. Public /catalog shows the same generic board overview. Galleries on retained product routes have five or six photos. The round coffee-table photo formerly named slabs-room was removed at the user's request. Editorial sections use separate photos, never repeated category covers.
 - Header navigation uses dark buttons with a small 8–10 px radius. The announcement strip is removed.
 - Thickness selection belongs below the board image with length and quantity.
 - Include a section with examples of furniture and interior uses for Kelo boards.

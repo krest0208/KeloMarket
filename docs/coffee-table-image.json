@@ -1,0 +1,14 @@
+{
+  "src": "/images/interior.webp",
+  "scope": "project inspiration",
+  "subject": "Журнальный стол из доски Кело",
+  "illustrated_size_cm": {
+    "length": 110,
+    "width": 40,
+    "thickness": 4
+  },
+  "demo": true,
+  "stock_claim": false,
+  "generator": "built-in image_gen",
+  "prompt": "Use case: precise-object-edit. Edit target: the supplied interior photograph for KELO WOOD MARKET. Replace the huge log-like furniture completely with a clearly recognizable, realistically constructed small coffee table. The tabletop must be ONE normal thin Karelian Kelo pine board, approximately 110 cm long, 40 cm wide, and only 40 MILLIMETERS thick. Visible thin 4 cm edge, pale honey pine grain with subtle silver-grey weathering, modest knots and a lightly irregular natural long edge. NO thick log, NO chunky beam, NO massive cross-section, NO oversized slab, NO bench. Put this thin tabletop at a plausible coffee-table height of 42 cm on two slim matte black steel rectangular leg frames at opposite ends, with four visible narrow floor contact points and plenty of clear open space under the tabletop. It must read immediately as a small coffee TABLE beside the sofa, not a bench or a block of wood. Keep the existing Scandinavian living room atmosphere, green-grey sofa at left and large Karelia lake window at right, natural daylight and restrained premium photography. Frame the complete table and its metal legs in a balanced three-quarter front view in the foreground. One low ceramic cup on the tabletop for scale. Landscape 1536x1024. Photorealistic architecture photography, realistic board proportions and joinery, sharp wood detail. No text, logos, watermark, dimensions printed on image, or people. This is a material-use illustration, not a specific inventory item."
+}

@@ -2,7 +2,7 @@ import { animate, hover, inView, press, scroll } from 'motion';
 
 export function setupSiteMotion(root:HTMLElement){
  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return()=>{};
- const revealTargets='.section-title,.gallery-section-heading,.gallery-hero-copy,.gallery-material-heading,.gallery-karelia>div,.gallery-karelia>img,.gallery-comparison-card,.gallery-material-grid>article,.project-example,.steps-grid>.step,.delivery-grid>div,.closing-section,.page-title,.catalog-banner,.constructor-help,.product-care,.product-detail-grid>div,.product-card,.mobile-nav';
+ const revealTargets='.section-title,.gallery-section-heading,.gallery-hero-copy,.gallery-material-heading,.gallery-karelia>div,.gallery-karelia>img,.gallery-comparison-card,.gallery-material-grid>article,.project-example,.steps-grid>.step,.delivery-grid>div,.closing-section,.page-title,.catalog-banner,.constructor-help,.product-care,.product-detail-grid>div,.product-card,.mobile-nav,.board-order-card>div';
  const actionTargets='button:not(:disabled):not(.photo-open),a.btn,a.kmw-action,a.product-go,a.cart-link,.desktop-nav a,.product-nav-links a,.gallery-comparison-link,.project-example-link';
  const revealed=new WeakSet<Element>(),gestures=new Map<HTMLElement,()=>void>(),entrances=new Map<HTMLElement,()=>void>(),scrollScenes=new Map<HTMLElement,()=>void>(),spinners=new Map<HTMLElement,()=>void>();
  const running=new Map<HTMLElement,ReturnType<typeof animate>>(),touched=new Set<HTMLElement>(),feedbackText=new WeakMap<HTMLElement,string>();

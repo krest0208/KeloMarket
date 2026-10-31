@@ -18,7 +18,7 @@ export function productPhotoSet(p:Product):GalleryPhoto[]{
 }
 export const editorialImages={hero:'/images/gallery/home-hero.webp',grain:'/images/gallery/home-grain.webp',edge:'/images/gallery/home-edge.webp',shelf:'/images/gallery/home-shelf.webp',materialEdge:'/images/gallery/material-edge.webp',thickness:'/images/gallery/material-thickness.webp',long:'/images/gallery/material-long.webp'};
 export const projectExamples=[
- {title:'Журнальный стол',image:'/images/interior.webp',description:'Слэб с живым краем и лаконичное подстолье. Природная фактура становится главным акцентом комнаты.',href:'/catalog?category=tops',action:'Выбрать заготовку'},
- {title:'Консоль для прихожей',image:'/images/gallery/project-console.webp',description:'Неглубокая столешница из массива и тонкие опоры. Место для вещей, которые хочется оставить на виду.',href:'/catalog?category=tops',action:'Подобрать материал'},
- {title:'Подоконник из массива',image:'/images/gallery/project-window.webp',description:'Тёплая деревянная поверхность у окна. Прямой задний спил и живой край со стороны комнаты.',href:'/catalog?category=sills',action:'Для подоконников'},
+ {title:'Журнальный стол',image:'/images/interior.webp',description:'Тонкая столешница из доски Кело толщиной 40 мм на металлическом подстолье. Пример использования доски размером 110 × 40 см.',href:'/constructor',action:'Заказать доску'},
+ {title:'Консоль для прихожей',image:'/images/gallery/project-console.webp',description:'Неглубокая столешница из массива и тонкие опоры. Место для вещей, которые хочется оставить на виду.',href:'/constructor',action:'Заказать доску'},
+ {title:'Подоконник из массива',image:'/images/gallery/project-window.webp',description:'Тёплая деревянная поверхность у окна. Прямой задний спил и живой край со стороны комнаты.',href:'/constructor',action:'Заказать доску'},
 ];
