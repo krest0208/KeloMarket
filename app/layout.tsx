@@ -5,6 +5,7 @@ import "./board-model.css";
 import "./photo-gallery.css";
 import "./motion-interactions.css";
 import "./board-overview.css";
+import "./board-preview.css";
 import { StoreProvider, Header, Footer } from "@/components/storefront";
 
 export const metadata: Metadata = {

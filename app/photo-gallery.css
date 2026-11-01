@@ -12,4 +12,8 @@
 @media(prefers-reduced-motion:reduce){.photo-gallery-image{}}
 
 .product-card{display:flex;flex-direction:column}.product-card>.product-info{display:flex;flex-direction:column;flex:1}.product-card .product-bottom{margin-top:auto}.product-card .product-dimensions{margin-bottom:18px}
+/* Keep the complete board visible across the square/portrait product frames. */
+.photo-gallery-stage .photo-gallery-image{object-fit:contain}
+.gallery-frame>.gallery-slide-image{object-fit:contain}
+.cart-item-image img,.checkout-items img{object-fit:contain;background:var(--color-obsidian)}
 @media(pointer:coarse) and (min-width:801px) and (max-width:1100px){.photo-gallery-category .photo-thumbnails{grid-template-columns:repeat(3,minmax(0,1fr))}}

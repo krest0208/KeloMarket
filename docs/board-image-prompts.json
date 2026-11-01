@@ -1,0 +1,241 @@
+{
+  "date": "2026-11-01",
+  "scope_full_size_static_images": 33,
+  "active_wood_images": 30,
+  "shape_defects_found": 15,
+  "surface_defects_found": 5,
+  "unique_images_replaced_and_visually_reviewed": 20,
+  "thumbnails_updated": 14,
+  "browser_mobile_desktop_qa": "blocked: local preview daemon unavailable; private Site sign-in rejected by automatic approval review",
+  "underside_limit": "Only visible faces can be assessed from each photo; unseen underside finish and exact real dimensions cannot be proven.",
+  "images": [
+    {
+      "asset": "public/images/board.webp",
+      "defect": "unfinished_upper_face",
+      "sections": "Редактор /constructor: текстура схемы под ползунком; миниатюры товаров в админке",
+      "before_sha256": "d138ef8facb4dd95967fe29a4ae44d60891b09f2dbfd29be659a0b180cb49de6",
+      "after_sha256": "3bff0fa4bd27e87d74d15267f4f6f946171e9856627a854bd356ad9a2480a408",
+      "thumbnail": null,
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit the input photograph for KELO WOOD MARKET. Preserve the original camera viewpoint, framing, backdrop, palette, light and natural Kelo pine grain/knots. The product must be an elongated FLAT BOARD, 30 or40mm thick, broad top and bottom parallel planar sanded polished satin surfaces. Knots flush with the surface. Only the thin long side edges have natural irregular weathered live edge. No raised grain ridges or deep rough cavities on broad faces, no log/branch, no oversized timber beam, no perfectly straight-sawn long sides. Photorealistic, no text. Output landscape 1536x1024. Keep the full top-down horizontal board on its original beige background and the same silhouette/composition. Flatten and polish the whole top, preserving silver-honey wood colour and flush knots. Crosscut short ends neatly, keep organic live edges. Avoid large dark cracks through the board."
+    },
+    {
+      "asset": "public/images/gallery/blanks-end.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи заготовок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "ca2510b8b2dc21ee2bdd6851dfa9483919ddd6c7b2976b9742dea7dc7d0f00e3",
+      "after_sha256": "ede9d548e839c90e4fe781a8e98abf4ad127758793cc08026b41e3d2b85f6d0b",
+      "thumbnail": "public/images/gallery/blanks-end-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit this KELO WOOD MARKET product photo. Keep the original framing, viewpoint, props, backdrop, lighting and silver-honey Kelo pine colour. Replace only the wooden product geometry/finish: relatively thin live-edge PLANKS, with exactly30–40mm consistent thickness instead of thick beams. Reduce visible end/side HEIGHT by60 percent versus source. All broad upper and lower faces must be parallel planes, fully sanded/polished satin smooth with flush knots and realistic fine pine grain. Short ends neat crosscut, long sides still naturally irregular live edges within narrow thin side bands. No cylindrical logs or rectangular construction beams. No raised weathered ridges/rotted knot cavities on the polished top; organic edge character stays. Photorealistic, no text, 1536x1024 landscape. Keep two adjacent boards on charcoal workbench; same close low viewpoint to their end grain. Ends must be thin wide strips (30 and40mm high, approximately35cm wide). Smooth top, natural wavy live edges, no tall rectangular beams."
+    },
+    {
+      "asset": "public/images/gallery/blanks-sill.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи заготовок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "f2d89d887c1f3a662fb48f664035582914a6aedef8d77efb2c9f6b13acd0b1ef",
+      "after_sha256": "58d4fdcb31d391fedce53b91c245bedd073740b1541b6d856ee9d658f067e1f3",
+      "thumbnail": "public/images/gallery/blanks-sill-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit this KELO WOOD MARKET product photo. Keep the original framing, viewpoint, props, backdrop, lighting and silver-honey Kelo pine colour. Replace only the wooden product geometry/finish: relatively thin live-edge PLANKS, with exactly30–40mm consistent thickness instead of thick beams. Reduce visible end/side HEIGHT by60 percent versus source. All broad upper and lower faces must be parallel planes, fully sanded/polished satin smooth with flush knots and realistic fine pine grain. Short ends neat crosscut, long sides still naturally irregular live edges within narrow thin side bands. No cylindrical logs or rectangular construction beams. No raised weathered ridges/rotted knot cavities on the polished top; organic edge character stays. Photorealistic, no text, 1536x1024 landscape. Keep winter window and dark room. Replace thick sill with one thin40mm polished flat live-edge board at same location; straight rear edge at window, natural front edge, neat thin endgrain."
+    },
+    {
+      "asset": "public/images/gallery/blanks-stack.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи заготовок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "9b427e24605bfe0d0e0ab1ee647711839bd5dc973728d67472af4a29d141c815",
+      "after_sha256": "66429ba652ab6b5f1fed55e7f6413b148dea10a6f336461db314432d30be3d27",
+      "thumbnail": "public/images/gallery/blanks-stack-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen replacement",
+      "prompt": "Photorealistic product photo, 3:2 landscape. Four thin FLAT live-edge Karelian Kelo pine boards stacked in staggered positions on a charcoal stone workbench, dark studio wall behind, matching natural silver-grey and warm honey pine palette. Each board150cm long,35cm wide, exactly3cm thick; all four together total12cm wood thickness. Low wide end grain at front-left, long edges receding toward upper-right. Top and underside flat parallel finely sanded POLISHED satin planes, knots perfectly flush, fine wood colour pattern not ridges. Long sides keep slight organic live-edge waves in a thin narrow edge. Stack occupies middle60 percent frame with space around. NOT beams, timber blocks, logs or rough unsanded reclaimed wood. No props/text."
+    },
+    {
+      "asset": "public/images/gallery/blanks-workshop.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи заготовок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "c9af786220b230b48c38fb997802ea27ed504ed0c07905ce2fd8b5c225c36396",
+      "after_sha256": "585955f875a619a9bca5d45054530ffc7c040d1fd7d6658ba126ce2b54aa0249",
+      "thumbnail": "public/images/gallery/blanks-workshop-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit this KELO WOOD MARKET product photo. Keep the original framing, viewpoint, props, backdrop, lighting and silver-honey Kelo pine colour. Replace only the wooden product geometry/finish: relatively thin live-edge PLANKS, with exactly30–40mm consistent thickness instead of thick beams. Reduce visible end/side HEIGHT by60 percent versus source. All broad upper and lower faces must be parallel planes, fully sanded/polished satin smooth with flush knots and realistic fine pine grain. Short ends neat crosscut, long sides still naturally irregular live edges within narrow thin side bands. No cylindrical logs or rectangular construction beams. No raised weathered ridges/rotted knot cavities on the polished top; organic edge character stays. Photorealistic, no text, 1536x1024 landscape. Keep plane tool, ruler, shavings and workbench composition. Replace thick billet with thin40mm flat polished live-edge board; neatly crosscut short end, organic long sides. Surface shows fine smooth pine grain flush knots."
+    },
+    {
+      "asset": "public/images/gallery/home-grain.webp",
+      "defect": "unfinished_upper_face",
+      "sections": "Главная: «Характер. В деталях»",
+      "before_sha256": "c5826bd4016dbbab6c9cb4eedb6ae7bef581065debb214bb64cd5d36fe865fa9",
+      "after_sha256": "d3c76f37ee706c17f2910756bf5aec4b7fb10844322ce11cb6417a78f2887b49",
+      "thumbnail": "public/images/gallery/home-grain-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen replacement",
+      "prompt": "Photorealistic editorial macro product photograph for KELO WOOD MARKET. A completely FLAT finely planed, sanded and satin POLISHED surface of natural Karelian Kelo pine, with sweeping diagonal grey-silver and honey-gold grain flowing around a dark oval knot at the RIGHT of frame. The knot is cut perfectly FLUSH, solid and smooth in the same flat plane. Warm upper-right side light produces a broad silky continuous reflection across the smooth face. No raised ridges, splinters, recessed knot, bark on the face, weathered corrugation, raw saw marks, holes, or rustic roughness. Natural grain is fine visible colour, not relief. Very close crop showing only the polished broad face, matching dark modern wood brand. Landscape3:2 1536x1024, no text."
+    },
+    {
+      "asset": "public/images/gallery/home-hero.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Главная: первый экран",
+      "before_sha256": "9cf8e44f5ad3b9127410cdd0b011264ff48222767f89f659f15f93153315befa",
+      "after_sha256": "1f92cb47704e6874f412302da1b82a1391ccfed2b71ecdde04d6dbb7b5c40216",
+      "thumbnail": "public/images/gallery/home-hero-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Input image is the edit target, a hero product photo for KELO WOOD MARKET. Change only the wooden product's geometry and finish; preserve the charcoal studio backdrop, two small dark stone supports, horizontal camera angle, warm silver-honey Kelo pine colour, natural knots, lighting and photographic composition. Replace the branched trunk-like object with ONE elongated relatively flat live-edge Kelo pine BOARD, approximately 150 cm long x 38 cm wide x exactly 4 cm thick. Both broad faces must be parallel, completely planar, finely sanded and polished with a subtle satin sheen, top clearly visible and cleanly flattened flush knots; underside planar with thin even thickness visible above the stones. Both long sides retain organic irregular natural live edges and weathered character, but only in the thin 40 mm edge band. No fork or branches, no cylindrical log, no timber beam, no swollen bulges through the upper plane, no rectangular straight-sawn long sides. Preserve believable natural pine grain, small stable cracks and colour variation. Entire board visible with breathing room on all sides, landscape 3:2, photorealistic, no text or graphics."
+    },
+    {
+      "asset": "public/images/gallery/material-thickness.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Главная: блок о толщине материала",
+      "before_sha256": "965da5e2a2bc15b853dd30eb75988aa365eb63959eee330e0308af7d1e433272",
+      "after_sha256": "8fb470041c8b4298fcf07ade2d5f4f18ebeede267f510bcf2839b011392f8401",
+      "thumbnail": "public/images/gallery/material-thickness-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit this KELO WOOD MARKET product photo. Keep the original framing, viewpoint, props, backdrop, lighting and silver-honey Kelo pine colour. Replace only the wooden product geometry/finish: relatively thin live-edge PLANKS, with exactly30–40mm consistent thickness instead of thick beams. Reduce visible end/side HEIGHT by60 percent versus source. All broad upper and lower faces must be parallel planes, fully sanded/polished satin smooth with flush knots and realistic fine pine grain. Short ends neat crosscut, long sides still naturally irregular live edges within narrow thin side bands. No cylindrical logs or rectangular construction beams. No raised weathered ridges/rotted knot cavities on the polished top; organic edge character stays. Photorealistic, no text, 1536x1024 landscape. Keep two samples on charcoal surface as thickness comparison: left exactly30mm, right exactly40mm, both approximately30cm wide. Show their low wide endgrain. Natural wavy long edges and smoothly polished broad top and bottom faces. Neither should resemble squared beams."
+    },
+    {
+      "asset": "public/images/gallery/shelves-angle.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи полок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "7b4c6c2c0c2b95156450112180fbdbfa00f6e3c3113106eb5396e965ef3d27fc",
+      "after_sha256": "a283de80ffe3db13f2eb383c102e42a4761756afb99f5c86c3725d46ebaeecde",
+      "thumbnail": "public/images/gallery/shelves-angle-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Input image is the edit target. This is a photorealistic KELO pine shelf product photo. Change ONLY the shelf wood geometry and face finish; preserve the exact room, wall, props, camera framing, perspective, colors, lighting, and shadows. Replace the current thick beam-like shelf with a slender 40 mm thick live-edge Kelo pine BOARD of the same length and width. Reduce its current visible end-face height by roughly 60 percent. Upper and lower broad faces must be parallel, absolutely planar, evenly sanded and satin-polished; upper knots are flush, grain is smooth, with no raised ridges or splinters. The long front edge remains organically irregular in plan, with the natural weathered gray/honey pine grain and small knots. Keep the natural wavy LIVE EDGE, do NOT turn it into a straight-edged rectangular building plank. Eliminate protruding downward knots and bulges so the underside is one flat plane. No log, roundwood, cylinder, thick beam, or tree branch. No new objects, text, watermarks, or graphic labels. Maintain landscape 3:2 composition and photorealism. Preserve the dark charcoal plaster wall, two books and black bowl on the left, and the existing three-quarter camera angle."
+    },
+    {
+      "asset": "public/images/gallery/shelves-edge.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи полок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "0df441b0a850c1c1b8790b2b093eec82e7245dce44cb4adc244f8546b74c56b1",
+      "after_sha256": "817d26a7af8064ff7c48d7390f3aa636a0c8226d9991461ae1f56f9eb7fdd208",
+      "thumbnail": "public/images/gallery/shelves-edge-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Input image is the edit target. This is a photorealistic KELO pine shelf product photo. Change ONLY the shelf wood geometry and face finish; preserve the exact room, wall, props, camera framing, perspective, colors, lighting, and shadows. Replace the current thick beam-like shelf with a slender 40 mm thick live-edge Kelo pine BOARD of the same length and width. Reduce its current visible end-face height by roughly 60 percent. Upper and lower broad faces must be parallel, absolutely planar, evenly sanded and satin-polished; upper knots are flush, grain is smooth, with no raised ridges or splinters. The long front edge remains organically irregular in plan, with the natural weathered gray/honey pine grain and small knots. Keep the natural wavy LIVE EDGE, do NOT turn it into a straight-edged rectangular building plank. Eliminate protruding downward knots and bulges so the underside is one flat plane. No log, roundwood, cylinder, thick beam, or tree branch. No new objects, text, watermarks, or graphic labels. Maintain landscape 3:2 composition and photorealism. This is a CLOSE-UP DETAIL of the right shelf end; preserve that close-up and the charcoal plaster wall. Make the visible end a very shallow horizontal rectangle with height much smaller than its width, not a tall square beam; its thickness is only 40 mm and depth is 300 mm. Keep broad upper face flat and satin polished.",
+      "refinement": {
+        "input_png": "/workspace/scratch/7ac5ad1a8598/generated_images/exec-d02ec55e-c1b8-45f6-8825-0812b64d5730.png",
+        "prompt": "Precise photographic geometry correction of this exact shelf detail. Keep dark wall, camera framing, light, color, wood grain and upper surface position. The visible right end face is still much too tall and timber-like. Remove the LOWER TWO THIRDS of the wood thickness, resulting in a VERY THIN 30 mm pine board, 300 mm deep. Only the thin end strip should remain, its physical height one tenth of front-to-back board depth. The top plane stays in its current position; the lower plane moves UP to make a slender board. Top and bottom are absolutely planar, parallel, smooth satin polished. The long front edge still curves organically inward/outward in plan with the natural Kelo wood grain, not a machined straight edge. Do not vertically stretch grain, do not make a beam, no downward knot bulges. Preserve all surroundings; change only thickness and underside geometry."
+      }
+    },
+    {
+      "asset": "public/images/gallery/shelves-grain.webp",
+      "defect": "unfinished_upper_face",
+      "sections": "Галереи полок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "f61dae02652f83b3888d6b6fe2e10e8bc75890c40ea5a1b5a5dcfbec04f483c8",
+      "after_sha256": "4baaa577e3b7dbd2b1175abf68ea336745f0ac8432c4f762d87d00722f0cfe96",
+      "thumbnail": "public/images/gallery/shelves-grain-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case precise-object-edit. Preserve photo of shelf in same perspective and dark backdrop, showing end and top grain. Rework product into thin40mm wide live-edge Kelo pine BOARD. Top and bottom FLAT parallel polished smooth satin planes, flush smooth knot, fine grain visible as colour pattern not raised ridges. Reduce end height by55 percent, keep natural irregular long front edge, neat short crosscut. Keep composition/light/palette. 1536x1024 photorealistic, no text."
+    },
+    {
+      "asset": "public/images/gallery/shelves-room.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи полок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "dbd242bc07dd056f055fdf5572bbf1a18321ef53070a8226e5fd70416db9aa79",
+      "after_sha256": "437c3401587b27688a8ccc5dbce664ac53173b333ae010f05fd6d77db1056534",
+      "thumbnail": "public/images/gallery/shelves-room-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Input image is the edit target. This is a photorealistic KELO pine shelf product photo. Change ONLY the shelf wood geometry and face finish; preserve the exact room, wall, props, camera framing, perspective, colors, lighting, and shadows. Replace the current thick beam-like shelf with a slender 40 mm thick live-edge Kelo pine BOARD of the same length and width. Reduce its current visible end-face height by roughly 60 percent. Upper and lower broad faces must be parallel, absolutely planar, evenly sanded and satin-polished; upper knots are flush, grain is smooth, with no raised ridges or splinters. The long front edge remains organically irregular in plan, with the natural weathered gray/honey pine grain and small knots. Keep the natural wavy LIVE EDGE, do NOT turn it into a straight-edged rectangular building plank. Eliminate protruding downward knots and bulges so the underside is one flat plane. No log, roundwood, cylinder, thick beam, or tree branch. No new objects, text, watermarks, or graphic labels. Maintain landscape 3:2 composition and photorealism. Preserve the dark wall, book and black vase with pine branches, black armchair and woven blanket, side table, existing warm light and framing. Make the left end notably thin; retain organic long live edge."
+    },
+    {
+      "asset": "public/images/gallery/slabs-angle.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи слэбов: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "5b2254b32cc7877ede60e1ef0469dc726632745bafd8c179eac609585259460b",
+      "after_sha256": "f1a285318dc1ff3778ec33c047de7b83a41b97da15ff204e2b30647b019afcde",
+      "thumbnail": "public/images/gallery/slabs-angle-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit the input photograph for KELO WOOD MARKET. Preserve the original camera viewpoint, framing, backdrop, palette, light and natural Kelo pine grain/knots. The product must be an elongated FLAT BOARD, 30 or40mm thick, broad top and bottom parallel planar sanded polished satin surfaces. Knots flush with the surface. Only the thin long side edges have natural irregular weathered live edge. No raised grain ridges or deep rough cavities on broad faces, no log/branch, no oversized timber beam, no perfectly straight-sawn long sides. Photorealistic, no text. Output landscape 1536x1024. Keep whole diagonal board and charcoal stone supports. Reduce thickness to exactly40mm, smooth polish entire flat top with flush knots. Preserve organic long edges and neat short end grain."
+    },
+    {
+      "asset": "public/images/gallery/slabs-knot.webp",
+      "defect": "unfinished_upper_face",
+      "sections": "Галереи слэбов: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "ba1f7156adf99f1293f8589e23f55c75cd4b760938ed861fa0df122c1e8b0e29",
+      "after_sha256": "4279b43bb0bc18aea1c27ee12421990faef2a550867cfa4d19421f5e66e177ab",
+      "thumbnail": "public/images/gallery/slabs-knot-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen replacement",
+      "prompt": "Photorealistic macro product photograph: perfectly FLAT sanded and polished satin Kelo pine board top, honey-gold and silver-grey grain around a large solid dark knot near LEFT THIRD, grain sweeping horizontally to the right. Knot has been planed and polished perfectly flush with surrounding broad face, no cavity. Continuous silky satin light reflection shows flat furniture-quality finish. Natural fine pore detail and tiny hairline crack are allowed; no grooves, splinters, raised fibres, rot, deep holes or corrugation. Landscape3:2 1536x1024. No props, no text."
+    },
+    {
+      "asset": "public/images/gallery/slabs-top.webp",
+      "defect": "unfinished_upper_face",
+      "sections": "Галереи слэбов: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "6f4aaf5ca6a9c7a251909e2aee9ae9ceeac39d7934bc1cdc5ba208de7e92783d",
+      "after_sha256": "bd6db13c58806aa2df694156651d27d96c4039d458680a2bd72e2a977599988a",
+      "thumbnail": "public/images/gallery/slabs-top-thumb.webp",
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit the input photograph for KELO WOOD MARKET. Preserve the original camera viewpoint, framing, backdrop, palette, light and natural Kelo pine grain/knots. The product must be an elongated FLAT BOARD, 30 or40mm thick, broad top and bottom parallel planar sanded polished satin surfaces. Knots flush with the surface. Only the thin long side edges have natural irregular weathered live edge. No raised grain ridges or deep rough cavities on broad faces, no log/branch, no oversized timber beam, no perfectly straight-sawn long sides. Photorealistic, no text. Output landscape 1536x1024. Keep full board top-down on charcoal stone. Sand the entire top into a continuous polished plane with flush knots and fine visible grain, remove raised fibres and deep splintering while retaining natural uneven long-edge silhouette."
+    },
+    {
+      "asset": "public/images/hero.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Исходное фото товара в админке",
+      "before_sha256": "e39f4aef0348ea8b56af47892b58f8d0f55b5842db94d6c5be29f4bfaa398770",
+      "after_sha256": "5c2c23530d425d792ed5b0733ddf2adf2331cddd3a5e8a099ae6197286e92bf3",
+      "thumbnail": null,
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case precise-object-edit. Preserve dark stone table, green leaf shadows, diagonal camera perspective and Kelo pine grain palette. Replace thick slab with slender flat polished40mm live-edge BOARD approximately150x40cm. Visible end must have height:width ratio about1:10, thin low straight crosscut. Upper/lower faces parallel fully flat sanded polished satin with flush knots, no rough holes or raised fibres. Long edges retain natural organic outline within thin side band. No beam/log. Preserve composition and mood. 1536x1024 photo, no text."
+    },
+    {
+      "asset": "public/images/quiet-blanks.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи заготовок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "1de5613300f78e24488897cc4dcc1959db7bc0df18ac1aa282b7aa9bd3831b82",
+      "after_sha256": "0ec25835bc171499b3cb5582dd4730254db8f4c15066c87431f99b16a73321e7",
+      "thumbnail": null,
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Precise object edit of this photo, keep dark stone table and warm light. Replace the wooden stack with FOUR VERY THIN FLAT LIVE-EDGE PINE PLANKS laid flat, each150cm long by38cm wide by3–4cm thick. Total wood stack thickness only14cm! The visible LONG front edges should each be narrow strips roughly25–35 pixels high in a1536px image, not the current100–180px tall faces. Leave air around stack and retain same center. Broad top is a smooth polished horizontal plane with flush knots, bottom planar too. Thin natural rough long sides remain organic, short endgrain low wide strips. Essential strong thickness reduction, no beams, no logs. Photorealistic, 3:2."
+    },
+    {
+      "asset": "public/images/quiet-hero.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи слэбов: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "72e6e83415f5229dff9b52ab0b71ec13c1796fa6d894a9728ba3d47d63ae56aa",
+      "after_sha256": "29717ee600c5ed7053b77986284e4f84852a82cda128167f62d2bef873b3d8a5",
+      "thumbnail": null,
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit the input photograph for KELO WOOD MARKET. Preserve the original camera viewpoint, framing, backdrop, palette, light and natural Kelo pine grain/knots. The product must be an elongated FLAT BOARD, 30 or40mm thick, broad top and bottom parallel planar sanded polished satin surfaces. Knots flush with the surface. Only the thin long side edges have natural irregular weathered live edge. No raised grain ridges or deep rough cavities on broad faces, no log/branch, no oversized timber beam, no perfectly straight-sawn long sides. Photorealistic, no text. Output landscape 1536x1024. Keep dark stone pedestal and dark studio crop. Make the visible near cross section a consistent thin 40mm instead of massive rough end; clean flat top and bottom; keep natural organic long edge. Preserve original perspective and leave breathing room."
+    },
+    {
+      "asset": "public/images/quiet-shelf.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Галереи полок: /product/[id], выбор товара, корзина и оформление",
+      "before_sha256": "993cde5456fe5022102876a5b523e39efcff5b67e3dcc6f9aab51d9f604ec39b",
+      "after_sha256": "4e40031f869baeb863df9e708bc9997374ffca0a41fa74981f04ab00a4acd2f0",
+      "thumbnail": null,
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Input image is the edit target. This is a photorealistic KELO pine shelf product photo. Change ONLY the shelf wood geometry and face finish; preserve the exact room, wall, props, camera framing, perspective, colors, lighting, and shadows. Replace the current thick beam-like shelf with a slender 40 mm thick live-edge Kelo pine BOARD of the same length and width. Reduce its current visible end-face height by roughly 60 percent. Upper and lower broad faces must be parallel, absolutely planar, evenly sanded and satin-polished; upper knots are flush, grain is smooth, with no raised ridges or splinters. The long front edge remains organically irregular in plan, with the natural weathered gray/honey pine grain and small knots. Keep the natural wavy LIVE EDGE, do NOT turn it into a straight-edged rectangular building plank. Eliminate protruding downward knots and bulges so the underside is one flat plane. No log, roundwood, cylinder, thick beam, or tree branch. No new objects, text, watermarks, or graphic labels. Maintain landscape 3:2 composition and photorealism. Preserve the dark charcoal wall, black vase with dried branch and two dark books; keep the atmospheric warm side-light. In particular remove the deep downward wood bulges.",
+      "refinement": {
+        "input_png": "/workspace/scratch/7ac5ad1a8598/generated_images/exec-cc44b7b1-f49a-4723-bb5f-386b2beb394a.png",
+        "prompt": "Precise photographic edit. Keep this composition, black wall, lighting, vase, books, and all other objects identical. Correct only the shelf: its underside is currently bulging down around the large knot near the right. Saw/plane the underside into a single FLAT STRAIGHT HORIZONTAL PLANE parallel to the already flat top, at uniform 30 mm thickness. Reduce front vertical height another 35%. The bottom outline from left to right should therefore be nearly straight in this frontal photograph, not undulating below the knot. Preserve weathered Kelo pine organic natural front edge IN PLAN (in/out toward the camera), retain knots and gray/honey grain. Do not keep downward bulges. Top and bottom broad faces smoothly satin polished; never a beam or round log. No other changes, no new text or props."
+      }
+    },
+    {
+      "asset": "public/images/shelf.webp",
+      "defect": "shape_or_thickness",
+      "sections": "Исходное фото полки в админке",
+      "before_sha256": "cd52069a2d1581b6610fcf6088dc3ecd7796a139f1ec1af1e38c65c36a25fc35",
+      "after_sha256": "fa9126ba4ed80a99254df20cba099fb28287b8121672d702de392f6ab8f83949",
+      "thumbnail": null,
+      "visually_reviewed": true,
+      "method": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Input image is the edit target. This is a photorealistic KELO pine shelf product photo. Change ONLY the shelf wood geometry and face finish; preserve the exact room, wall, props, camera framing, perspective, colors, lighting, and shadows. Replace the current thick beam-like shelf with a slender 40 mm thick live-edge Kelo pine BOARD of the same length and width. Reduce its current visible end-face height by roughly 60 percent. Upper and lower broad faces must be parallel, absolutely planar, evenly sanded and satin-polished; upper knots are flush, grain is smooth, with no raised ridges or splinters. The long front edge remains organically irregular in plan, with the natural weathered gray/honey pine grain and small knots. Keep the natural wavy LIVE EDGE, do NOT turn it into a straight-edged rectangular building plank. Eliminate protruding downward knots and bulges so the underside is one flat plane. No log, roundwood, cylinder, thick beam, or tree branch. No new objects, text, watermarks, or graphic labels. Maintain landscape 3:2 composition and photorealism. Preserve the warm light plaster wall, green vase with branches, folded fabric, two cups, sunlit room and soft shadows."
+    }
+  ]
+}
