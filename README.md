@@ -3,8 +3,8 @@
 Демонстрационный интернет-магазин досок карельской сосны Кело с отдельным редактором размеров, корзиной, оформлением заказа и панелью управления. Основной язык — TypeScript; интерфейс — React 19; сборка — Vinext/Vite; сервер — Cloudflare Workers; данные — D1 с Drizzle ORM; загружаемые изображения — R2.
 
 - Исходники: [krest0208/KeloMarket](https://github.com/krest0208/KeloMarket), ветка `main`.
-- Сайт: [KELO WOOD MARKET](https://kelo-wood-market.kh-ng-gian-l-3883.chatgpt.site).
-- Домен бренда: `kelowoodmarket.ru`; его DNS и привязка проверяются отдельно от публикации на служебном адресе.
+- Сайт: [KELO WOOD MARKET](https://kelowoodmarket.ru/), [служебный адрес Sites](https://kelo-wood-market.kh-ng-gian-l-3883.chatgpt.site).
+- Домен `kelowoodmarket.ru` подключён через DNS REG.RU; Sites и HTTPS имеют статус active. Доступ сохранён только владельцу, `www` отдельно не подключался.
 - Site project ID: `appgprj_6ae5db0e48b08191b083473315b59dc8`. Сохранять текущий доступ только владельцу.
 
 ## Контекст для продолжения работы
