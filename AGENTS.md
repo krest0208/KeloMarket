@@ -36,7 +36,7 @@ Never upload credentials, environment values, local database contents, customer 
 - Keep demo prices/images clearly labelled; YooKassa and Yandex Delivery are not connected.
 
 - The homepage has one generic board description card with a Заказать link to /constructor, plus the newly requested Изделия section (shelf, windowsill, kitchen shelf) and dynamically created products. Do not restore the old category grid or embedded homepage configurator. Public /catalog shows the same generic board overview. Galleries on retained product routes have five or six photos. The round coffee-table photo formerly named slabs-room was removed at the user's request. Editorial sections use separate photos, never repeated category covers.
-- Header navigation uses dark buttons with a small 8–10 px radius. The announcement strip is removed.
+- Main and secondary navigation belong to one full-width sticky header. Navigation links form continuous rectangular regions with transparent backgrounds and very subtle dividers; do not restore separate rounded pills or a floating secondary panel. “Мы на WB” is a prominent pale wood-yellow region. Preserve accessible mobile navigation, keyboard focus and the cart. The announcement strip is removed.
 - Thickness selection belongs below the board image with length and quantity.
 - Include a section with examples of furniture and interior uses for Kelo boards.
 
@@ -65,3 +65,8 @@ Never upload credentials, environment values, local database contents, customer 
 - Tracked `stockUnits` counts complete configured items. An order reserves quantity in units, cancellation returns it once; `remainingCm` is a per-item dimension limit. Legacy rows with NULL units retain centimeter-based reservation until the owner sets actual counts. Do not invent counts. Buyer APIs/UI expose `inStock`/`stockTracked`, never unit counts.
 - Admin product saves use compare-and-swap for original unit and centimeter balances. A stale form must not overwrite a buyer's reservation. Keep atomic order/cancel logic, idempotency and the tests in `tests/inventory.test.ts`.
 - D1 migrations are generated with SQL, snapshot and journal metadata. Sites applies them before Worker deployment. Never CREATE/ALTER migration-owned tables during a request.
+
+## Domain scope
+
+- Only `kelowoodmarket.ru` is authorized for the current REG.RU connection task. Read [docs/DOMAIN_SETUP.md](docs/DOMAIN_SETUP.md) before changing DNS. Do not alter other domains, name servers, mail records or unrelated services. Preserve the Site's existing audience.
+- Use the exact DNS records supplied by Sites for this existing custom-domain binding. Do not remove/recreate it to work around a login or propagation delay. Account passwords and authentication cookies must never enter source files, logs or GitHub.

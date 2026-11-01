@@ -35,8 +35,23 @@ export function Brand(){return <a className="brand" href="/" aria-label="KELO WO
 export function Header({activePath}:{activePath?:string}={}){
  const {cart}=useStore();const [path,setPath]=useState(activePath||'');
  useEffect(()=>setPath(activePath||window.location.pathname),[activePath]);
- const [menu,setMenu]=useState(false);const count=cart.reduce((s,i)=>s+i.quantity,0);
- return <><header className="header"><div className="container header-inner"><Brand/><nav className="desktop-nav" aria-label="Основная навигация">{PRIMARY_NAVIGATION.map(item=>item.external?<MarketplaceLink key={item.href}/>:<a key={item.href} href={item.href} aria-current={item.activePaths?.includes(path)?'page':undefined}>{<SiteText text={item.label}/>}</a>)}</nav><div className="header-actions"><a className="cart-link" href="/cart" aria-label={`Корзина, ${count} товаров`}><ShoppingBag size={25} strokeWidth={1.8} aria-hidden="true"/>{count>0&&<span className="cart-count" aria-hidden="true">{count}</span>}</a><button className="icon-btn mobile-menu" onClick={()=>setMenu(!menu)} aria-label={menu?'Закрыть меню':'Открыть меню'} aria-expanded={menu}>{menu?<X size={20}/>:<Menu size={20}/>}</button></div></div>{menu&&<nav className="mobile-nav" aria-label="Мобильная навигация">{PRIMARY_NAVIGATION.map(item=>item.external?<MarketplaceLink key={item.href} onClick={()=>setMenu(false)}/>:<a href={item.href} key={item.href} aria-current={item.activePaths?.includes(path)?'page':undefined} onClick={()=>setMenu(false)}>{<SiteText text={item.mobileLabel||item.label}/>}</a>)}</nav>}</header><div className="product-nav-wrap"><nav className="product-nav container" aria-label="Навигация по доске Кело"><a className="product-nav-name" href="/"><SiteText text={"Сосна Кело."}/></a><div className="product-nav-links"><a href="/#highlights"><SiteText text={"Особенности"}/></a><a href="/#board"><SiteText text={"О доске"}/></a><a href="/constructor"><SiteText text={"В ваш размер"}/></a></div><a className="btn small" href="/constructor"><SiteText text={"Заказать"}/></a></nav></div></>;
+ const [menu,setMenu]=useState(false);const menuButton=useRef<HTMLButtonElement>(null);const count=cart.reduce((s,i)=>s+i.quantity,0);
+ return <header className="header" onKeyDown={event=>{if(event.key==='Escape'&&menu){setMenu(false);menuButton.current?.focus();}}}>
+  <div className="container header-inner">
+   <Brand/>
+   <nav className="desktop-nav" aria-label="Основная навигация">{PRIMARY_NAVIGATION.map(item=>item.external?<MarketplaceLink key={item.href} className="header-wb-link"/>:<a key={item.href} href={item.href} aria-current={item.activePaths?.includes(path)?'page':undefined}><SiteText text={item.label}/></a>)}</nav>
+   <div className="header-actions">
+    <a className="cart-link" href="/cart" aria-label={`Корзина, ${count} товаров`}><ShoppingBag size={25} strokeWidth={1.8} aria-hidden="true"/>{count>0&&<span className="cart-count" aria-hidden="true">{count}</span>}</a>
+    <button ref={menuButton} type="button" className="icon-btn mobile-menu" onClick={()=>setMenu(!menu)} aria-label={menu?'Закрыть меню':'Открыть меню'} aria-expanded={menu} aria-controls="header-mobile-navigation">{menu?<X size={20} aria-hidden="true"/>:<Menu size={20} aria-hidden="true"/>}</button>
+   </div>
+  </div>
+  <div className="product-nav-wrap"><nav className="product-nav container" aria-label="Навигация по доске Кело">
+   <a className="product-nav-name" href="/"><SiteText text={"Сосна Кело."}/></a>
+   <div className="product-nav-links"><a href="/#highlights"><SiteText text={"Особенности"}/></a><a href="/#board"><SiteText text={"О доске"}/></a><a href="/constructor"><SiteText text={"В ваш размер"}/></a></div>
+   <a className="btn small" href="/constructor"><SiteText text={"Заказать"}/></a>
+  </nav></div>
+  <nav id="header-mobile-navigation" className="mobile-nav" aria-label="Мобильная навигация" hidden={!menu}>{PRIMARY_NAVIGATION.map(item=>item.external?<MarketplaceLink key={item.href} className="header-wb-link" onClick={()=>setMenu(false)}/>:<a href={item.href} key={item.href} aria-current={item.activePaths?.includes(path)?'page':undefined} onClick={()=>setMenu(false)}><SiteText text={item.mobileLabel||item.label}/></a>)}</nav>
+ </header>;
 }
 export function Modal({title,onClose,children,wide=false}:{title:string;onClose:()=>void;children:ReactNode;wide?:boolean}){
  const dialog=useRef<HTMLDialogElement>(null);const [closing,setClosing]=useState(false);const titleId=useId(),reduced=useReducedMotion();
