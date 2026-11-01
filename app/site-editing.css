@@ -1,0 +1,15 @@
+.kelo-page-block{display:contents}
+.kelo-custom-block{background:var(--color-obsidian,#0c0c0d);color:var(--color-porcelain,#f5f5f7)}
+.kelo-custom-block.theme-wood{background:var(--color-action,#dbc99e);color:var(--color-action-ink,#201d17)}
+.kelo-custom-block.align-center{text-align:center}
+.kelo-custom-block h2{font-size:clamp(28px,4vw,54px);line-height:1.15;margin-bottom:24px;white-space:pre-wrap;overflow-wrap:anywhere}
+.kelo-custom-block p{font-size:18px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;max-width:820px}
+.kelo-custom-block.align-center p{margin-inline:auto}
+.kelo-custom-block img{width:100%;height:auto;max-height:620px;object-fit:cover;margin-bottom:32px;border-radius:12px}
+.kelo-edit-frame .kelo-edit-copy{white-space:pre-wrap;overflow-wrap:anywhere;cursor:text;outline:1px dashed #dbc99e80;outline-offset:4px;border-radius:2px;min-width:1ch;caret-color:currentColor}
+.kelo-edit-frame .kelo-edit-copy:hover,.kelo-edit-frame .kelo-edit-copy:focus,.kelo-edit-frame .kelo-edit-copy.is-selected{outline:2px solid #dbc99e;outline-offset:4px;background:#dbc99e12}
+.kelo-edit-frame .kelo-edit-copy:empty::before{content:'Текст';opacity:.5}
+.kelo-edit-frame [data-site-block].is-selected>:first-child{outline:2px solid #dbc99e;outline-offset:-2px}
+.kelo-edit-frame [data-site-block]>:first-child:hover{box-shadow:inset 0 0 0 1px #dbc99e70}
+.kelo-edit-frame [data-site-block]{cursor:default}
+.kelo-edit-frame .kelo-custom-block.theme-wood .kelo-edit-copy{outline-color:#201d1780}

@@ -4,6 +4,7 @@ import {SiteText} from '@/components/site-content';
 
 import {useCallback, useEffect, useId, useRef, useState, type FormEvent} from 'react';
 import type {ProductReview, ReviewPage} from '@/lib/reviews';
+import {useCustomerAccount} from '@/components/customer-account';
 
 interface ProductReviewsProps {productId: string; title: string; compact?: boolean}
 const formatDate = (value: string) => new Intl.DateTimeFormat('ru-RU', {day: 'numeric', month: 'long', year: 'numeric'}).format(new Date(value));
@@ -13,8 +14,9 @@ export function ProductReviews({productId, title, compact = false}: ProductRevie
   const [reviews, setReviews] = useState<ProductReview[]>([]);
   const [total, setTotal] = useState(0), [offset, setOffset] = useState(0), [hasMore, setHasMore] = useState(false);
   const [loaded, setLoaded] = useState(false), [loading, setLoading] = useState(true), [loadError, setLoadError] = useState('');
-  const [name, setName] = useState(''), [text, setText] = useState('');
-  const [nameError, setNameError] = useState(''), [textError, setTextError] = useState('');
+  const {user, loading: accountLoading, error: accountError, reload: reloadAccount} = useCustomerAccount();
+  const [text, setText] = useState(''), [loginHref, setLoginHref] = useState('/account');
+  const [textError, setTextError] = useState('');
   const [busy, setBusy] = useState(false), [submitError, setSubmitError] = useState(''), [success, setSuccess] = useState('');
   const controller = useRef<AbortController | null>(null), posting = useRef(false), requestId = useRef<string | null>(null);
   const currentProduct = useRef(productId);
@@ -41,28 +43,26 @@ export function ProductReviews({productId, title, compact = false}: ProductRevie
 
   useEffect(() => {
     setReviews([]); setTotal(0); setOffset(0); setHasMore(false); setLoaded(false);
-    setName(''); setText(''); setNameError(''); setTextError(''); setSubmitError(''); setSuccess(''); requestId.current = null;
+    setText(''); setTextError(''); setSubmitError(''); setSuccess(''); requestId.current = null;
+    setLoginHref('/account?next=' + encodeURIComponent(window.location.pathname + window.location.search + '#reviews-' + productId));
     void load();
     return () => controller.current?.abort();
   }, [load]);
 
-  const validateName = () => {
-    const message = name.trim().length < 2 ? 'Укажите имя: не меньше 2 символов.' : '';
-    setNameError(message); return !message;
-  };
   const validateText = () => {
     const message = text.trim().length < 10 ? 'Напишите хотя бы 10 символов.' : '';
     setTextError(message); return !message;
   };
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const validName = validateName(), validText = validateText();
-    if (!validName || !validText || posting.current) return;
+    const validText = validateText();
+    if (!user || !validText || posting.current) return;
     posting.current = true; setBusy(true); setSubmitError(''); setSuccess('');
     requestId.current ||= crypto.randomUUID();
     try {
-      const response = await fetch('/api/reviews', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({requestId: requestId.current, productId, name: name.trim(), text: text.trim()})});
+      const response = await fetch('/api/reviews', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({requestId: requestId.current, productId, text: text.trim()})});
       const data = await response.json() as {review?: ProductReview; error?: string};
+      if (response.status === 401) void reloadAccount();
       if (!response.ok || !data.review) throw new Error(data.error || 'Не удалось сохранить отзыв.');
       if (currentProduct.current !== productId) return;
       // Show the actual server-saved record immediately, including if a later
@@ -80,7 +80,7 @@ export function ProductReviews({productId, title, compact = false}: ProductRevie
     }
   }
 
-  return <section className={'product-reviews' + (compact ? ' product-reviews-compact' : '')} aria-labelledby={`reviews-title-${uid}`}>
+  return <section id={'reviews-' + productId} className={'product-reviews' + (compact ? ' product-reviews-compact' : '')} aria-labelledby={`reviews-title-${uid}`}>
     <div className="product-reviews-heading">
       <h3 id={`reviews-title-${uid}`}><SiteText text={"Отзывы об изделии"}/> <span>«{<SiteText text={title}/>}»</span></h3>
       {loaded && !loadError && <span className="product-reviews-total">{total} {total % 10 === 1 && total % 100 !== 11 ? 'отзыв' : total % 10 >= 2 && total % 10 <= 4 && (total % 100 < 12 || total % 100 > 14) ? 'отзыва' : 'отзывов'}</span>}
@@ -94,11 +94,9 @@ export function ProductReviews({productId, title, compact = false}: ProductRevie
       </li>)}</ul>}
       {hasMore && <button className="product-reviews-more" type="button" disabled={loading} onClick={() => void load(offset, true)}>{loading ? 'Загружаем…' : 'Показать ещё'}</button>}
     </div>
-    <form className="product-review-form" onSubmit={submit} aria-label={`Написать отзыв: ${title}`} aria-busy={busy}>
+    {accountLoading ? <p className="product-reviews-note" role="status">Проверяем вход для отзыва…</p> : accountError ? <div className="product-review-login-note"><p className="product-review-session-error" role="alert">{accountError}</p><button className="btn secondary small" type="button" onClick={() => void reloadAccount()}>Повторить проверку входа</button></div> : user ? <form className="product-review-form" onSubmit={submit} aria-label={`Написать отзыв: ${title}`} aria-busy={busy}>
       <h4><SiteText text={"Написать отзыв"}/></h4>
-      <label htmlFor={`review-name-${uid}`}><SiteText text={"Ваше имя"}/></label>
-      <input id={`review-name-${uid}`} name="review-name" autoComplete="name" required minLength={2} maxLength={60} value={name} disabled={busy} aria-invalid={!!nameError} aria-describedby={nameError ? `review-name-error-${uid}` : undefined} onBlur={validateName} onChange={event => {setName(event.target.value); setNameError(''); setSuccess(''); requestId.current = null;}}/>
-      {nameError && <p id={`review-name-error-${uid}`} className="product-review-field-error">{nameError}</p>}
+      <div className="product-review-account"><span>Вы пишете как <strong>{user.name}</strong></span><a href={loginHref}>Мой аккаунт</a></div>
       <label htmlFor={`review-text-${uid}`}><SiteText text={"Ваш отзыв"}/></label>
       <textarea id={`review-text-${uid}`} name="review-text" required rows={4} minLength={10} maxLength={2000} value={text} disabled={busy} aria-invalid={!!textError} aria-describedby={`review-text-help-${uid}${textError ? ` review-text-error-${uid}` : ''}`} onBlur={validateText} onChange={event => {setText(event.target.value); setTextError(''); setSuccess(''); requestId.current = null;}}/>
       <div id={`review-text-help-${uid}`} className="product-review-text-help"><span><SiteText text={"От 10 до 2000 символов"}/></span><span>{text.length} / 2000</span></div>
@@ -107,6 +105,6 @@ export function ProductReviews({productId, title, compact = false}: ProductRevie
       {submitError && <p className="product-review-submit-error" role="alert">{submitError}</p>}
       <p className="product-review-success" role="status" aria-live="polite">{success}</p>
       <button className="btn product-review-submit" type="submit" disabled={busy}>{busy ? 'Публикуем…' : 'Опубликовать отзыв'}</button>
-    </form>
+    </form> : <div className="product-review-login-note"><h4><SiteText text={"Поделитесь своим впечатлением"}/></h4><p><SiteText text={"Чтобы оставить отзыв, войдите или зарегистрируйтесь. Для заказа аккаунт не нужен."}/></p><div className="product-review-login-actions"><a className="btn small" href={loginHref}>Войти</a><a className="btn secondary small" href={loginHref + (loginHref.includes('?') ? '&' : '?') + 'mode=register'}>Зарегистрироваться</a></div></div>}
   </section>;
 }

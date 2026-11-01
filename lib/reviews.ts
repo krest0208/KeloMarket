@@ -11,6 +11,7 @@ export const reviewInput = z.object({
   name: z.string().trim().min(2).max(60).refine(printableName),
   text: z.string().trim().min(10).max(2000).refine(printableText),
 }).strict();
+export const signedInReviewInput = reviewInput.omit({name: true});
 export type ReviewInput = z.infer<typeof reviewInput>;
 export interface ProductReview {id: string; productId: string; name: string; text: string; createdAt: string}
 export interface ReviewPage {reviews: ProductReview[]; total: number; hasMore: boolean}
@@ -36,23 +37,26 @@ export async function listProductReviews(db: D1Database, productId: string, offs
 export class ReviewConflict extends Error {}
 export class ReviewDuplicate extends Error {}
 
-export async function saveProductReview(db: D1Database, input: ReviewInput, now = new Date()): Promise<{review: ProductReview; created: boolean}> {
+export async function saveProductReview(db: D1Database, input: ReviewInput, now = new Date(), userId: string | null = null): Promise<{review: ProductReview; created: boolean}> {
   const body = reviewInput.parse(input);
-  const existing = await db.prepare(`SELECT ${columns} FROM product_reviews WHERE id=?`).bind(body.requestId).first<ProductReview>();
+  const existing = await db.prepare(`SELECT ${columns}, user_id AS userId FROM product_reviews WHERE id=?`).bind(body.requestId).first<ProductReview & {userId: string | null}>();
   if (existing) {
-    if (existing.productId !== body.productId || existing.name !== body.name || existing.text !== body.text) throw new ReviewConflict();
-    return {review: existing, created: false};
+    if (existing.productId !== body.productId || existing.name !== body.name || existing.text !== body.text || existing.userId !== userId) throw new ReviewConflict();
+    const {userId: _privateIdentity, ...publicReview} = existing;
+    return {review: publicReview, created: false};
   }
   // One atomic statement also rejects an accidental identical submission with a
-  // new request UUID. No visitor IP, email, or identity profile is collected.
+  // new request UUID. The account ID stays private in storage; public responses
+  // contain only the displayed name, review text and date.
   const createdAt = now.toISOString();
   const recent = new Date(now.getTime() - 60000).toISOString();
-  await db.prepare(`INSERT OR IGNORE INTO product_reviews(id, product_id, author_name, body, created_at)
-    SELECT ?,?,?,?,? WHERE NOT EXISTS (
-      SELECT 1 FROM product_reviews WHERE product_id=? AND author_name=? AND body=? AND created_at>=?
-    )`).bind(body.requestId, body.productId, body.name, body.text, createdAt, body.productId, body.name, body.text, recent).run();
-  const review = await db.prepare(`SELECT ${columns} FROM product_reviews WHERE id=?`).bind(body.requestId).first<ProductReview>();
+  await db.prepare(`INSERT OR IGNORE INTO product_reviews(id, product_id, author_name, body, created_at, user_id)
+    SELECT ?,?,?,?,?,? WHERE NOT EXISTS (
+      SELECT 1 FROM product_reviews WHERE product_id=? AND user_id IS ? AND author_name=? AND body=? AND created_at>=?
+    )`).bind(body.requestId, body.productId, body.name, body.text, createdAt, userId, body.productId, userId, body.name, body.text, recent).run();
+  const review = await db.prepare(`SELECT ${columns}, user_id AS userId FROM product_reviews WHERE id=?`).bind(body.requestId).first<ProductReview & {userId: string | null}>();
   if (!review) throw new ReviewDuplicate();
-  if (review.productId !== body.productId || review.name !== body.name || review.text !== body.text) throw new ReviewConflict();
-  return {review, created: true};
+  if (review.productId !== body.productId || review.name !== body.name || review.text !== body.text || review.userId !== userId) throw new ReviewConflict();
+  const {userId: _privateIdentity, ...publicReview} = review;
+  return {review: publicReview, created: true};
 }

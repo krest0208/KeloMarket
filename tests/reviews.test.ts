@@ -2,14 +2,14 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync} from 'node:fs';
-import {listProductReviews, ReviewConflict, ReviewDuplicate, reviewInput, reviewTargetExists, saveProductReview} from '../lib/reviews';
+import {listProductReviews, ReviewConflict, ReviewDuplicate, reviewInput, signedInReviewInput, reviewTargetExists, saveProductReview} from '../lib/reviews';
 
 function database() {
   const sqlite = new DatabaseSync(':memory:');
-  for (const file of ['drizzle/0000_magenta_lady_ursula.sql', 'drizzle/0001_product_reviews.sql']) {
+  for (const file of ['drizzle/0000_magenta_lady_ursula.sql', 'drizzle/0001_product_reviews.sql', 'drizzle/0002_unit_inventory.sql', 'drizzle/0003_customer_accounts.sql']) {
     sqlite.exec(readFileSync(file, 'utf8').replaceAll('--> statement-breakpoint', ''));
   }
-  const addProduct = (id: string, active = 1) => sqlite.prepare('INSERT INTO products VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(id, id, 'shelves', 'Test fixture', '/images/shelf.webp', 120, 24, 30, 2900, 120, active);
+  const addProduct = (id: string, active = 1) => sqlite.prepare('INSERT INTO products(id,name,category,description,image,max_length,width,thickness,rate,remaining_cm,active) VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(id, id, 'shelves', 'Test fixture', '/images/shelf.webp', 120, 24, 30, 2900, 120, active);
   addProduct('PL-001'); addProduct('PD-001'); addProduct('custom-wood_02'); addProduct('inactive-item', 0);
   const wrap = (sql: string, args: unknown[] = []) => ({
     bind: (...params: unknown[]) => wrap(sql, params),
@@ -30,6 +30,20 @@ test('Миграция создаёт пустое хранилище: нет д
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM product_reviews').get()!.n, 0);
   const indexes = sqlite.prepare("PRAGMA index_list('product_reviews')").all();
   assert.ok(indexes.some(row => row.name === 'product_reviews_product_created'));
+});
+
+test('Авторизованный POST не принимает подменённое имя, а UUID привязан к автору', async () => {
+  const {db, sqlite} = database();
+  const {name: _name, ...input} = review(20);
+  assert.equal(signedInReviewInput.safeParse(input).success, true);
+  assert.equal(signedInReviewInput.safeParse({...input, name: 'Подмена'}).success, false);
+  for (const user of ['customer-a', 'customer-b']) sqlite.prepare('INSERT INTO customer_users VALUES (?,?,?,?,?)').run(user, 'Имя аккаунта', user+'@example.test', 'local-fixture', now.toISOString());
+  const saved = await saveProductReview(db, {...input, name: 'Имя аккаунта'}, now, 'customer-a');
+  assert.equal((saved.review as any).userId, undefined);
+  assert.equal((saved.review as any).email, undefined);
+  assert.equal(sqlite.prepare('SELECT user_id AS userId FROM product_reviews WHERE id=?').get(input.requestId)!.userId, 'customer-a');
+  await assert.rejects(saveProductReview(db, {...input, name: 'Имя аккаунта'}, now, 'customer-b'), ReviewConflict);
+  assert.deepEqual(await saveProductReview(db, {...input, name: 'Имя аккаунта'}, now, 'customer-a'), {review: saved.review, created: false});
 });
 
 test('Отзыв сохраняется и повторный запрос с тем же UUID не создаёт копию', async () => {

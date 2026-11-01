@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer, index, check } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, index, uniqueIndex, check } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
 export const products = sqliteTable("products", {
   id: text("id").primaryKey(), name: text("name").notNull(), category: text("category").notNull(),
@@ -14,10 +14,22 @@ export const orders = sqliteTable("orders", {
   delivery: integer("delivery"), deliveryType: text("delivery_type").notNull(), payment: text("payment").notNull(),
   status: text("status").notNull().default("new"), opToken: text("op_token").notNull(),
 });
+export const customerUsers = sqliteTable("customer_users", {
+  id: text("id").primaryKey(), name: text("name").notNull(), email: text("email").notNull(),
+  passwordHash: text("password_hash").notNull(), createdAt: text("created_at").notNull(),
+}, table => [uniqueIndex("customer_users_email_unique").on(table.email)]);
+export const customerSessions = sqliteTable("customer_sessions", {
+  tokenHash: text("token_hash").primaryKey(), userId: text("user_id").notNull().references(() => customerUsers.id, {onDelete: 'cascade'}),
+  expiresAt: integer("expires_at").notNull(), createdAt: integer("created_at").notNull(),
+}, table => [index("customer_sessions_expiry").on(table.expiresAt)]);
+export const customerAuthLimits = sqliteTable("customer_auth_limits", {
+  key: text("key").primaryKey(), attempts: integer("attempts").notNull(), expiresAt: integer("expires_at").notNull(),
+}, table => [index("customer_auth_limits_expiry").on(table.expiresAt)]);
 export const productReviews = sqliteTable("product_reviews", {
   id: text("id").primaryKey(),
   productId: text("product_id").notNull(),
   authorName: text("author_name").notNull(),
+  userId: text("user_id").references(() => customerUsers.id, {onDelete: 'set null'}),
   body: text("body").notNull(),
   createdAt: text("created_at").notNull(),
 }, table => [

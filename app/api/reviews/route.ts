@@ -1,5 +1,6 @@
 import {ensureSeed, errorResponse, rawDb, sameOrigin} from '@/lib/store-server';
-import {listProductReviews, REVIEW_BODY_LIMIT, ReviewConflict, ReviewDuplicate, reviewInput, reviewProductId, reviewTargetExists, saveProductReview} from '@/lib/reviews';
+import {listProductReviews, REVIEW_BODY_LIMIT, ReviewConflict, ReviewDuplicate, signedInReviewInput, reviewProductId, reviewTargetExists, saveProductReview} from '@/lib/reviews';
+import {consumeCustomerLimit, getCustomer} from '@/lib/customer-storage';
 
 const response = (data: unknown, status = 200) => Response.json(data, {status, headers: {'Cache-Control': 'no-store'}});
 
@@ -20,11 +21,14 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  if (!sameOrigin(req)) return errorResponse('Недопустимый источник запроса.', 403);
+  if (!sameOrigin(req) || req.headers.get('sec-fetch-site') === 'cross-site') return errorResponse('Недопустимый источник запроса.', 403);
   if (!req.headers.get('content-type')?.toLowerCase().includes('application/json')) return errorResponse('Отправьте отзыв в формате JSON.', 415);
   const size = Number(req.headers.get('content-length'));
   if (size > REVIEW_BODY_LIMIT) return errorResponse('Отзыв слишком большой.', 413);
   try {
+    const db = rawDb();
+    const user = await getCustomer(db, req);
+    if (!user) return errorResponse('Войдите или зарегистрируйтесь, чтобы оставить отзыв.', 401);
     const reader = req.body?.getReader();
     if (!reader) return errorResponse('Проверьте текст отзыва.');
     const chunks: Uint8Array[] = [];
@@ -41,12 +45,12 @@ export async function POST(req: Request) {
     for (const chunk of chunks) {bytes.set(chunk, offset); offset += chunk.byteLength;}
     let data: unknown;
     try { data = JSON.parse(new TextDecoder().decode(bytes)); } catch { return errorResponse('Проверьте текст отзыва.'); }
-    const parsed = reviewInput.safeParse(data);
-    if (!parsed.success) return errorResponse('Укажите имя от 2 до 60 символов и отзыв от 10 до 2000 символов.');
+    const parsed = signedInReviewInput.safeParse(data);
+    if (!parsed.success) return errorResponse('Напишите отзыв от 10 до 2000 символов.');
     await ensureSeed();
-    const db = rawDb();
     if (!await reviewTargetExists(db, parsed.data.productId)) return errorResponse('Изделие не найдено.', 404);
-    const result = await saveProductReview(db, parsed.data);
+    if (!await consumeCustomerLimit(db, 'review-user', user.id, 15)) return errorResponse('Слишком много отзывов подряд. Попробуйте через 15 минут.', 429);
+    const result = await saveProductReview(db, {...parsed.data, name: user.name}, new Date(), user.id);
     return response({review: result.review}, result.created ? 201 : 200);
   } catch (error) {
     if (error instanceof ReviewConflict) return errorResponse('Этот запрос уже использован. Обновите страницу перед новым отзывом.', 409);

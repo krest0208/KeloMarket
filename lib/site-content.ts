@@ -1603,6 +1603,14 @@ export const SITE_CONTENT_FIELDS:SiteContentField[]=[
     "defaultValue": "Мы на WB",
     "multiline": false
   }
+,
+{key:hashContentText("Вход и регистрация"),label:"Навигация · Вход и регистрация",defaultValue:"Вход и регистрация",multiline:false},
+{key:hashContentText("Ваше место"),label:"Аккаунт · Ваше место",defaultValue:"Ваше место",multiline:false},
+{key:hashContentText("в истории Кело."),label:"Аккаунт · в истории Кело.",defaultValue:"в истории Кело.",multiline:false},
+{key:hashContentText("Войдите, чтобы поделиться впечатлением об изделии. Для оформления заказа регистрация не нужна."),label:"Аккаунт · Войдите, чтобы поделиться впечатлением об изделии. Для ",defaultValue:"Войдите, чтобы поделиться впечатлением об изделии. Для оформления заказа регистрация не нужна.",multiline:false},
+{key:hashContentText("Поделитесь своим впечатлением"),label:"Отзывы · Поделитесь своим впечатлением",defaultValue:"Поделитесь своим впечатлением",multiline:false},
+{key:hashContentText("Чтобы оставить отзыв, войдите или зарегистрируйтесь. Для заказа аккаунт не нужен."),label:"Отзывы · Чтобы оставить отзыв, войдите или зарегистрируйтесь. Дл",defaultValue:"Чтобы оставить отзыв, войдите или зарегистрируйтесь. Для заказа аккаунт не нужен.",multiline:false},
+{key:hashContentText("При регистрации сохраняются имя, email и хеш пароля. Имя и текст отзыва видны посетителям; email и хеш пароля не публикуются. Для заказа аккаунт не обязателен."),label:"Обработка данных · При регистрации сохраняются имя, email и хеш пароля. Им",defaultValue:"При регистрации сохраняются имя, email и хеш пароля. Имя и текст отзыва видны посетителям; email и хеш пароля не публикуются. Для заказа аккаунт не обязателен.",multiline:true}
 ];
 export const DEFAULT_SITE_CONTENT:Record<string,string>=Object.fromEntries(SITE_CONTENT_FIELDS.map(field=>[field.key,field.defaultValue]));
 

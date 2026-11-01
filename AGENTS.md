@@ -60,11 +60,20 @@ Never upload credentials, environment values, local database contents, customer 
 ## Editable site and inventory
 
 - Header/mobile/footer expose Изделия (`/products`) and Мы на WB (exact URL in `lib/site-navigation.ts`). New buyer-facing routes and cards must keep real review forms and availability labels. Do not fabricate reviews.
-- The owner now manages text via `/admin` → Тексты сайта, using the registry in `lib/site-content.ts`. Preserve stable copy keys when changing defaults. Source defaults stay readable when CMS fetching fails. New products are created in the existing admin panel and become visible on the additional products grid with the same constructor/cart/gallery/reviews flow.
+- The owner manages text via `/admin` → Редактировать на странице (visual editor) or Тексты сайта, using the registry in `lib/site-content.ts`. Preserve stable copy keys when changing defaults. Source defaults stay readable when CMS fetching fails. New products are created in the existing admin panel and become visible on the additional products grid with the same constructor/cart/gallery/reviews flow.
 - `/admin` requires the application's own username/password session; `/Admin` redirects there. Never restore header-only or DEV admin bypass. Real credentials stay only in runtime variables `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, never GitHub.
 - Tracked `stockUnits` counts complete configured items. An order reserves quantity in units, cancellation returns it once; `remainingCm` is a per-item dimension limit. Legacy rows with NULL units retain centimeter-based reservation until the owner sets actual counts. Do not invent counts. Buyer APIs/UI expose `inStock`/`stockTracked`, never unit counts.
 - Admin product saves use compare-and-swap for original unit and centimeter balances. A stale form must not overwrite a buyer's reservation. Keep atomic order/cancel logic, idempotency and the tests in `tests/inventory.test.ts`.
 - D1 migrations are generated with SQL, snapshot and journal metadata. Sites applies them before Worker deployment. Never CREATE/ALTER migration-owned tables during a request.
+
+## Visual editing and customer accounts
+
+- Read [docs/VISUAL_EDITOR.md](docs/VISUAL_EDITOR.md) for editor workflow, iframe protocol, block schema and verification limits. `SiteText` becomes editable only inside an authorized admin frame; a URL parameter never grants write permission. The API checks the real admin session and origin on every write.
+- Both visual saves and legacy text saves use one `expectedRevision` and atomic D1 compare-and-swap. Never bypass conflict checks or overwrite a newer layout/content snapshot. Drafts are in memory until Save; do not silently autosave or persist admin drafts in public localStorage.
+- The ten built-in homepage blocks keep their identity/functionality; order and visibility are editable. Up to twenty custom text/photo blocks use plain strings, allowlisted local image paths and enum themes/alignment. Never accept arbitrary HTML, JS or CSS. Text remains escaped, including pasted markup.
+- `/account` is customer registration/login, separate from `/admin`. Reviews GET stays public, new review POST requires a customer session and takes the author name from that session. Never trust a posted author name or fabricate reviews. Guest checkout must continue to work without a customer account.
+- Customer passwords use salted PBKDF2, sessions store only a random token's SHA-256 hash in D1. Cookie is HttpOnly/Secure/SameSite Strict, with expiry/logout/rotation. Rate limits are durable in D1; the HMAC counter key is generated at runtime and never returned by public APIs. No login, password, cookie or runtime secret belongs in source/GitHub.
+- Migration `0003_customer_accounts` preserves old reviews with nullable user_id. Account email confirmation, password recovery and verified-purchase labels are not implemented; do not claim them.
 
 ## Domain scope
 

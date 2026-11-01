@@ -10,6 +10,9 @@ import "./products.css";
 import "./reviews.css";
 import "./admin-cms.css";
 import "./navigation-polish.css";
+import "./site-editing.css";
+import "./visual-site-editor.css";
+import "./customer-account.css";
 import {SiteContentProvider} from "@/components/site-content";
 import { StoreProvider, Header, Footer } from "@/components/storefront";
 
