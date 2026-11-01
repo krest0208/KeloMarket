@@ -8,6 +8,20 @@
       "when": 1793449321322,
       "tag": "0000_magenta_lady_ursula",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793525553714,
+      "tag": "0001_product_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793525795019,
+      "tag": "0002_unit_inventory",
+      "breakpoints": true
     }
   ]
 }

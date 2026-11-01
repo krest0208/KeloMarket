@@ -1,0 +1,37 @@
+.product-reviews{min-width:0;scroll-margin-top:150px;margin-top:42px;padding-top:32px;border-top:1px solid #38383b;color:var(--color-porcelain,#eee)}
+.product-reviews-heading{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.product-reviews-heading h3{font-size:25px;line-height:1.3;letter-spacing:-.35px;margin:0;overflow-wrap:anywhere}
+.product-reviews-heading h3 span{color:#b9b6af;font-weight:400}
+.product-reviews-total,.product-reviews-note,.product-reviews-empty{font-size:14px;line-height:1.6;color:#c0beb7}
+.product-reviews-total{white-space:nowrap;font-variant-numeric:tabular-nums}
+.product-reviews-list{padding:0;margin:0;list-style:none}
+.product-reviews-list>li{padding:20px 0;border-bottom:1px solid #39393c;min-width:0}
+.product-reviews-list>li:first-child{padding-top:0}
+.product-review-meta{display:flex;gap:12px;justify-content:space-between;align-items:baseline;flex-wrap:wrap;margin-bottom:10px}
+.product-review-meta strong{font-size:15px;line-height:1.4;font-weight:500;color:#efede8;overflow-wrap:anywhere}
+.product-review-meta time{font-size:12px;line-height:1.5;color:#aaa8a1}
+.product-reviews-list article>p{white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;font-size:15px;line-height:1.65;color:#d1cfc8}
+.product-reviews-load-error{font-size:14px;line-height:1.5;color:#efb4a7}
+.product-reviews-retry,.product-reviews-more{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;min-height:44px;border:1px solid #4e4c46;border-radius:8px;color:var(--color-action,#d9c490);font-size:14px;margin-top:14px;max-width:100%}
+.product-reviews-retry:hover,.product-reviews-more:hover{background:#2b2b2c;border-color:#747065}
+.product-reviews-retry:focus-visible,.product-reviews-more:focus-visible,.product-review-submit:focus-visible{outline:2px solid var(--color-action,#d9c490);outline-offset:4px}
+.product-review-form{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin-top:28px;min-width:0;max-width:680px}
+.product-review-form h4{font-size:19px;font-weight:500;line-height:1.4;margin:0 0 8px}
+.product-review-form>label{font-size:14px;line-height:1.5;color:#dfdcd3;margin-top:3px}
+.product-review-form input,.product-review-form textarea{display:block;max-width:100%;width:100%;min-width:0;background:#171719;border:1px solid #4b4b4e;border-radius:9px;color:#efede8;padding:12px 14px;font-size:16px;line-height:1.5;min-height:48px;box-sizing:border-box}
+.product-review-form textarea{resize:vertical;min-height:120px}
+.product-review-form input:focus,.product-review-form textarea:focus{outline:2px solid var(--color-action,#d9c490);outline-offset:2px;border-color:transparent}
+.product-review-form [aria-invalid=true]{border-color:#e4a898}
+.product-review-text-help{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12px;line-height:1.5;color:#aaa8a1;font-variant-numeric:tabular-nums}
+.product-review-form .product-review-privacy{font-size:12px;line-height:1.6;color:#aaa8a1;margin:4px 0 2px}
+.product-review-field-error,.product-review-submit-error{font-size:13px;line-height:1.5;color:#efb4a7;margin:0}
+.product-review-success{font-size:14px;line-height:1.5;color:var(--color-action,#d9c490);margin:0}
+.product-review-success:empty{display:none}
+.product-review-submit{align-self:flex-start;min-height:46px;border-radius:9px;font-size:14px;padding:12px 18px;margin-top:6px;white-space:normal;max-width:100%}
+.product-reviews-compact{margin-top:24px;padding-top:22px}
+.product-reviews-compact .product-reviews-heading{gap:10px;margin-bottom:16px}
+.product-reviews-compact .product-reviews-heading h3{font-size:20px}
+.product-reviews-compact .product-review-form{margin-top:22px}
+.product-reviews-compact .product-review-meta{display:block}
+.product-reviews-compact .product-review-meta time{display:block;margin-top:5px}
+@media(max-width:600px){.product-reviews{margin-top:30px;padding-top:24px}.product-reviews-heading h3{font-size:23px}.product-review-form{max-width:none}.product-review-submit{align-self:stretch}.product-review-meta{display:block}.product-review-meta time{display:block;margin-top:5px}.product-reviews-compact .product-reviews-heading h3{font-size:19px}}

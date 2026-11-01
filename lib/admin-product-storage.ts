@@ -1,0 +1,5 @@
+import type {Product} from './catalog';
+export interface ProductRevision {stockUnits:number|null;remainingCm:number}
+export async function createAdminProduct(db:D1Database,p:Product){const result=await db.prepare('INSERT OR IGNORE INTO products(id,name,category,description,image,max_length,width,thickness,rate,remaining_cm,stock_units,active) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)').bind(p.id,p.name,p.category,p.description,p.image,p.maxLength,p.width,p.thickness,p.rate,p.remainingCm,p.stockUnits??null,p.active).run();return result.meta.changes===1;}
+/** An open editor must not overwrite a reservation or a concurrent stock edit. */
+export async function updateAdminProduct(db:D1Database,p:Product,expected:ProductRevision){const result=await db.prepare('UPDATE products SET name=?,category=?,description=?,image=?,max_length=?,width=?,thickness=?,rate=?,remaining_cm=?,stock_units=?,active=? WHERE id=? AND stock_units IS ? AND remaining_cm=?').bind(p.name,p.category,p.description,p.image,p.maxLength,p.width,p.thickness,p.rate,p.remainingCm,p.stockUnits??null,p.active,p.id,expected.stockUnits,expected.remainingCm).run();return result.meta.changes===1;}

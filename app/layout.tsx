@@ -6,6 +6,11 @@ import "./photo-gallery.css";
 import "./motion-interactions.css";
 import "./board-overview.css";
 import "./board-preview.css";
+import "./products.css";
+import "./reviews.css";
+import "./admin-cms.css";
+import "./navigation-polish.css";
+import {SiteContentProvider} from "@/components/site-content";
 import { StoreProvider, Header, Footer } from "@/components/storefront";
 
 export const metadata: Metadata = {
@@ -24,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body><StoreProvider><a className="skip-link" href="#main">К содержимому</a><Header />{children}<Footer /></StoreProvider></body>
+      <body><SiteContentProvider><StoreProvider><a className="skip-link" href="#main">К содержимому</a><Header />{children}<Footer /></StoreProvider></SiteContentProvider></body>
     </html>
   );
 }

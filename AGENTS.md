@@ -35,7 +35,7 @@ Never upload credentials, environment values, local database contents, customer 
 - Gift wrapping and a shelf-support set cost 300 RUB each per item.
 - Keep demo prices/images clearly labelled; YooKassa and Yandex Delivery are not connected.
 
-- The homepage has one generic board description card with a Заказать link to /constructor. Do not restore category cards, the featured product grid, or the embedded homepage configurator. Public /catalog shows the same generic board overview. Galleries on retained product routes have five or six photos. The round coffee-table photo formerly named slabs-room was removed at the user's request. Editorial sections use separate photos, never repeated category covers.
+- The homepage has one generic board description card with a Заказать link to /constructor, plus the newly requested Изделия section (shelf, windowsill, kitchen shelf) and dynamically created products. Do not restore the old category grid or embedded homepage configurator. Public /catalog shows the same generic board overview. Galleries on retained product routes have five or six photos. The round coffee-table photo formerly named slabs-room was removed at the user's request. Editorial sections use separate photos, never repeated category covers.
 - Header navigation uses dark buttons with a small 8–10 px radius. The announcement strip is removed.
 - Thickness selection belongs below the board image with length and quantity.
 - Include a section with examples of furniture and interior uses for Kelo boards.
@@ -56,3 +56,12 @@ Never upload credentials, environment values, local database contents, customer 
 - Preserve the user's pricing examples exactly: 30.4 cm charged as 30 cm; 30.5 cm charged as 40 cm. The general billing rule and fractional input still need agreement/implementation. Do not substitute standard rounding to the nearest 10 cm; current input and API accept integer centimeters.
 - The product is already polished on top and bottom, but current checkout still offers optional paid sanding. Resolve what additional service, if any, that option represents before changing its commercial meaning.
 - Image and documentation work must not silently change prices, dimensions, stock, customer orders or the Site audience.
+
+## Editable site and inventory
+
+- Header/mobile/footer expose Изделия (`/products`) and Мы на WB (exact URL in `lib/site-navigation.ts`). New buyer-facing routes and cards must keep real review forms and availability labels. Do not fabricate reviews.
+- The owner now manages text via `/admin` → Тексты сайта, using the registry in `lib/site-content.ts`. Preserve stable copy keys when changing defaults. Source defaults stay readable when CMS fetching fails. New products are created in the existing admin panel and become visible on the additional products grid with the same constructor/cart/gallery/reviews flow.
+- `/admin` requires the application's own username/password session; `/Admin` redirects there. Never restore header-only or DEV admin bypass. Real credentials stay only in runtime variables `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`, never GitHub.
+- Tracked `stockUnits` counts complete configured items. An order reserves quantity in units, cancellation returns it once; `remainingCm` is a per-item dimension limit. Legacy rows with NULL units retain centimeter-based reservation until the owner sets actual counts. Do not invent counts. Buyer APIs/UI expose `inStock`/`stockTracked`, never unit counts.
+- Admin product saves use compare-and-swap for original unit and centimeter balances. A stale form must not overwrite a buyer's reservation. Keep atomic order/cancel logic, idempotency and the tests in `tests/inventory.test.ts`.
+- D1 migrations are generated with SQL, snapshot and journal metadata. Sites applies them before Worker deployment. Never CREATE/ALTER migration-owned tables during a request.
