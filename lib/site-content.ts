@@ -1,4 +1,4 @@
-export interface SiteContentField {key:string;label:string;defaultValue:string;multiline?:boolean}
+export interface SiteContentField {key:string;label:string;defaultValue:string;sourceText?:string;multiline?:boolean}
 function hashContentText(text:string){let hash=2166136261;for(const c of text){hash^=c.codePointAt(0)!;hash=Math.imul(hash,16777619);}return 'copy_'+(hash>>>0).toString(36);}
 export const SITE_CONTENT_FIELDS:SiteContentField[]=[
   {
@@ -165,33 +165,38 @@ export const SITE_CONTENT_FIELDS:SiteContentField[]=[
   },
   {
     "key": "copy_1etsu3u",
-    "label": "Главная · Слэбы Кело.",
-    "defaultValue": "Слэбы Кело.",
-    "multiline": false
+    "label": "Главная · Доски Кело",
+    "defaultValue": "Доски Кело",
+    "multiline": false,
+    "sourceText": "Слэбы Кело."
   },
   {
     "key": "copy_rfeym2",
-    "label": "Главная · Натуральное дерево",
-    "defaultValue": "Натуральное дерево",
-    "multiline": false
+    "label": "Главная · Карельская сосна",
+    "defaultValue": "Карельская сосна",
+    "multiline": false,
+    "sourceText": "Натуральное дерево"
   },
   {
     "key": "copy_1ljpwao",
-    "label": "Главная · с характером.",
-    "defaultValue": "с характером.",
-    "multiline": false
+    "label": "Главная · в вашем размере",
+    "defaultValue": "в вашем размере",
+    "multiline": false,
+    "sourceText": "с характером."
   },
   {
     "key": "copy_70rym6",
-    "label": "Главная · Уникальные слэбы карельской сосны Кело.",
-    "defaultValue": "Уникальные слэбы карельской сосны Кело.",
-    "multiline": false
+    "label": "Главная · Сосна Кело с естественным живым краем",
+    "defaultValue": "Сосна Кело с естественным живым краем",
+    "multiline": false,
+    "sourceText": "Уникальные слэбы карельской сосны Кело."
   },
   {
     "key": "copy_2pi2p1",
-    "label": "Главная · Природная красота. В вашем размере.",
-    "defaultValue": "Природная красота. В вашем размере.",
-    "multiline": false
+    "label": "Главная · Длина до 150 см, толщина 30 или 40 мм",
+    "defaultValue": "Длина до 150 см, толщина 30 или 40 мм",
+    "multiline": false,
+    "sourceText": "Природная красота. В вашем размере."
   },
   {
     "key": "copy_3tplq1",
@@ -1614,5 +1619,6 @@ export const SITE_CONTENT_FIELDS:SiteContentField[]=[
 ];
 export const DEFAULT_SITE_CONTENT:Record<string,string>=Object.fromEntries(SITE_CONTENT_FIELDS.map(field=>[field.key,field.defaultValue]));
 
-const contentKeyByDefault=new Map(SITE_CONTENT_FIELDS.map(field=>[field.defaultValue,field.key]));
+const contentKeyByDefault=new Map<string,string>();
+for(const field of SITE_CONTENT_FIELDS){contentKeyByDefault.set(field.defaultValue,field.key);if(field.sourceText)contentKeyByDefault.set(field.sourceText,field.key);}
 export function siteContentKey(text:string){return contentKeyByDefault.get(text)??hashContentText(text);}

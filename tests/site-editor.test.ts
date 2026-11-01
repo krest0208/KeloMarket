@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {DEFAULT_SITE_LAYOUT,MAX_CUSTOM_BLOCKS,normalizedEditorContent,safeEditorImage,validEditorContent,validSiteLayout,validSiteEditorSave,type CustomBlock} from '../lib/site-editor';
-import {DEFAULT_SITE_CONTENT,SITE_CONTENT_FIELDS} from '../lib/site-content';
+import {DEFAULT_SITE_CONTENT,SITE_CONTENT_FIELDS,siteContentKey} from '../lib/site-content';
 import {getSiteEditorSnapshot,saveSiteEditorSnapshot} from '../lib/site-editor-server';
 
 function database(){
@@ -25,6 +25,17 @@ function database(){
 const custom=(changes:Partial<CustomBlock>={}):CustomBlock=>({id:'custom-local-test',type:'text',hidden:false,title:'Новый блок',text:'О натуральной древесине',image:'',alt:'',theme:'dark',align:'left',...changes});
 const layout=()=>structuredClone(DEFAULT_SITE_LAYOUT);
 const key=SITE_CONTENT_FIELDS[0].key;
+
+test('Refined copy preserves original CMS keys and owner overrides',()=>{
+ const fields=SITE_CONTENT_FIELDS.filter(field=>field.sourceText);
+ assert.equal(fields.length,5);
+ for(const field of fields){
+  assert.equal(siteContentKey(field.sourceText!),field.key);
+  assert.equal(siteContentKey(field.defaultValue),field.key);
+  assert.equal(DEFAULT_SITE_CONTENT[field.key],field.defaultValue);
+  assert.equal(normalizedEditorContent({[field.key]:'Текст владельца'})[field.key],'Текст владельца');
+ }
+});
 
 test('Layout permits reordering and hiding known blocks without deleting their identity',()=>{
  const value=layout();value.blocks.reverse();value.blocks[0].hidden=true;value.blocks.splice(2,0,custom());

@@ -13,6 +13,7 @@ import "./navigation-polish.css";
 import "./site-editing.css";
 import "./visual-site-editor.css";
 import "./customer-account.css";
+import "./unslop-polish.css";
 import {SiteContentProvider} from "@/components/site-content";
 import { StoreProvider, Header, Footer } from "@/components/storefront";
 

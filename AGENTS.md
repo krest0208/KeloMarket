@@ -39,6 +39,7 @@ Never upload credentials, environment values, local database contents, customer 
 - Main and secondary navigation belong to one full-width sticky header. Navigation links form continuous rectangular regions with transparent backgrounds and very subtle dividers; do not restore separate rounded pills or a floating secondary panel. “Мы на WB” is a prominent pale wood-yellow region. Preserve accessible mobile navigation, keyboard focus and the cart. The announcement strip is removed.
 - Thickness selection belongs below the board image with length and quantity.
 - Include a section with examples of furniture and interior uses for Kelo boards.
+- The owner requested `unslop`; its applied light-polish direction and attribution are in [docs/UNSLOP_AUDIT.md](docs/UNSLOP_AUDIT.md). Keep the real black/wood brand, existing images/composition and section order. Buyer-facing polish lives in `app/unslop-polish.css`; do not replace it with a generic template or reintroduce parallax, pill-shaped controls and mass section entrances.
 
 ## Board imagery: binding product requirements
 
@@ -70,6 +71,7 @@ Never upload credentials, environment values, local database contents, customer 
 
 - Read [docs/VISUAL_EDITOR.md](docs/VISUAL_EDITOR.md) for editor workflow, iframe protocol, block schema and verification limits. `SiteText` becomes editable only inside an authorized admin frame; a URL parameter never grants write permission. The API checks the real admin session and origin on every write.
 - Both visual saves and legacy text saves use one `expectedRevision` and atomic D1 compare-and-swap. Never bypass conflict checks or overwrite a newer layout/content snapshot. Drafts are in memory until Save; do not silently autosave or persist admin drafts in public localStorage.
+- Refined source defaults may have `sourceText` aliases in `lib/site-content.ts`. Preserve their stable CMS keys and the owner's saved overrides. Never reset D1 copy just to make it match a source redesign.
 - The ten built-in homepage blocks keep their identity/functionality; order and visibility are editable. Up to twenty custom text/photo blocks use plain strings, allowlisted local image paths and enum themes/alignment. Never accept arbitrary HTML, JS or CSS. Text remains escaped, including pasted markup.
 - `/account` is customer registration/login, separate from `/admin`. Reviews GET stays public, new review POST requires a customer session and takes the author name from that session. Never trust a posted author name or fabricate reviews. Guest checkout must continue to work without a customer account.
 - Customer passwords use salted PBKDF2, sessions store only a random token's SHA-256 hash in D1. Cookie is HttpOnly/Secure/SameSite Strict, with expiry/logout/rotation. Rate limits are durable in D1; the HMAC counter key is generated at runtime and never returned by public APIs. No login, password, cookie or runtime secret belongs in source/GitHub.
